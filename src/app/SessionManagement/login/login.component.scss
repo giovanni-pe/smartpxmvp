@@ -1,0 +1,310 @@
+/* Variables de estilo El Dorado para Smart Px */
+$gold-primary: #FFD700;
+$gold-secondary: #D4AF37;
+$gold-dark: #996515;
+$dark-primary: rgb(33, 37, 41);
+$dark-secondary: #243344;
+$luxury-bg: #1a1a1a;
+$card-bg: #2a2a2a;
+$text-light: #f5f5f5;
+$iot-icon-size: 50px;
+
+/* Estructura principal */
+.smartpx-el-dorado {
+  background: linear-gradient(135deg, $dark-primary 0%, $luxury-bg 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 2rem 0;
+  min-height: 100vh;
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Tarjeta de Login */
+.luxury-login-card {
+  background: $card-bg;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $gold-primary, $gold-secondary);
+    opacity: 1;
+  }
+
+  .gold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba($gold-primary, 0.05), rgba($gold-secondary, 0.1));
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 2;
+    background: rgba($dark-secondary, 0.7);
+  }
+}
+
+/* Inputs estilizados */
+.luxury-input {
+  .gold-input-icon {
+    background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+    color: $dark-primary;
+    border: none;
+    font-weight: bold;
+    min-width: 45px;
+    justify-content: center;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba($gold-primary, 0.25);
+    color: $text-light;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: rgba($text-light, 0.5);
+    }
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: $gold-primary;
+      box-shadow: 0 0 0 3px rgba($gold-primary, 0.25);
+      color: $text-light;
+    }
+  }
+}
+
+/* Textos */
+.gold-text {
+  color: $gold-primary;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-luxury-secondary {
+  color: rgba($text-light, 0.7);
+}
+
+.gold-error {
+  color: lighten(red, 20%);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 3px solid lighten(red, 20%);
+}
+
+/* Botones */
+.gold-button {
+  background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+  border: none;
+  color: $dark-primary !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba($gold-primary, 0.3);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($gold-primary, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.gold-link-button {
+  color: rgba($gold-primary, 0.8) !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $gold-primary !important;
+    text-decoration: underline;
+  }
+}
+
+.gold-outline-button {
+  border: 1px solid $gold-primary;
+  color: $gold-primary !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: transparent;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba($gold-primary, 0.2), transparent);
+    transition: all 0.6s ease;
+  }
+
+  &:hover {
+    background: rgba($gold-primary, 0.15);
+    box-shadow: 0 2px 12px rgba($gold-primary, 0.3);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Tarjeta de Bienvenida */
+.luxury-welcome-card {
+  background: linear-gradient(135deg, $dark-secondary, $dark-primary);
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $gold-primary, $gold-secondary);
+    opacity: 1;
+  }
+
+  .gold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba($gold-primary, 0.1), rgba($gold-secondary, 0.2));
+    opacity: 0.2;
+    z-index: 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 2;
+  }
+
+  .sensor-icon {
+    background: rgba($gold-primary, 0.1);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba($gold-primary, 0.3);
+    transition: all 0.4s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba($gold-primary, 0.3);
+      border-color: $gold-primary;
+    }
+  }
+}
+
+/* Iconos de IoT flotantes */
+@keyframes float-iot {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(-5px) rotate(-5deg); }
+  75% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.iot-icon {
+  position: absolute;
+  width: $iot-icon-size;
+  height: $iot-icon-size;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: float-iot 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba($gold-primary, 0.6));
+  opacity: 0.7;
+
+  &.sensor-icon-1 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm-32-208c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32zm96 0c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  &.sensor-icon-2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm-80-208c0-44.1 35.9-80 80-80s80 35.9 80 80-35.9 80-80 80-80-35.9-80-80zm80-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"/></svg>');
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  &.sensor-icon-3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm-32-208c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32zm96 0c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');
+    bottom: 15%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .luxury-login-card, .luxury-welcome-card {
+    margin-bottom: 2rem;
+  }
+
+  .iot-icon {
+    width: $iot-icon-size - 15px;
+    height: $iot-icon-size - 15px;
+    opacity: 0.5;
+  }
+}
