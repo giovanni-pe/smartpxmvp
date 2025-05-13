@@ -1,0 +1,15 @@
+<div class="humidity-container">
+    <div *ngIf="loading">
+      <p>Loading...</p>
+    </div>
+    <div class="text-center" *ngIf="!loading && avgHumidity !== null">
+        <span > HUMEDAD RELATIVA </span>
+        <br>
+        <br>
+      <p> {{ avgHumidity }}%</p>
+    </div>
+    <div *ngIf="errorMessage">
+      <p class="error">{{ errorMessage }}</p>
+    </div>
+  </div>
+  

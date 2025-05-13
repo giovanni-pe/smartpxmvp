@@ -1,0 +1,111 @@
+<!-- Filtros de Búsqueda con Estilo El Dorado -->
+<form [formGroup]="filtersForm" (ngSubmit)="applyFilters()" class="mb-5">
+  <div class="luxury-filter-panel p-4 rounded-3">
+    <div class="row g-3">
+      <div class="col-md-5">
+        <div class="luxury-input input-group">
+          <span class="input-group-text"><i class="fas fa-search gold-icon"></i></span>
+          <input type="text" formControlName="name" placeholder="Buscar por nombre" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="luxury-input input-group">
+          <span class="input-group-text"><i class="fas fa-calendar-alt gold-icon"></i></span>
+          <input type="text" formControlName="age" placeholder="Buscar por edad" class="form-control" />
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="gold-button btn w-100 py-2">
+          <i class="fas fa-filter me-2"></i>Filtrar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Mostrar las Mascotas en Cards de Lujo -->
+<div class="row g-4">
+  <div *ngFor="let dog of dogs" class="col-lg-4 col-md-6">
+    <div class="luxury-card h-100">
+      <div class="luxury-card-header">
+        <span class="gold-badge">{{ dog.breed }}</span>
+        <span class="silver-badge">{{ dog.age }} años</span>
+      </div>
+
+      <div class="luxury-image-container">
+        <img [src]="dog.photo_url" class="img-fluid" alt="Foto de {{dog.name}}">
+        <div class="gold-overlay"></div>
+      </div>
+
+      <div class="luxury-card-body">
+        <h3 class="gold-text mb-3">{{ dog.name }}</h3>
+
+        <div class="divider-gold"></div>
+
+        <div class="d-flex align-items-center mb-3">
+          <i class="fas fa-bolt gold-icon me-2"></i>
+          <span class="text-light">Nivel de Energía:
+            <span class="text-warning">{{ dog.energy_level }}</span>
+          </span>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+          <i class="fas fa-paw gold-icon me-2"></i>
+          <span class="text-light">Tamaño:
+            <span class="text-warning">{{ dog.size }}</span>
+          </span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-4">
+
+          <button class="gold-outline-button btn btn-sm px-3">
+            <i class="fas fa-paw me-2"></i>Pasear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Paginación Estilo Ruleta -->
+<div class="pagination d-flex justify-content-between align-items-center mt-5">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1"
+          class="gold-button btn px-4 py-2">
+    <i class="fas fa-chevron-left me-2"></i>Anterior
+  </button>
+
+  <div class="page-indicator">
+    <span class="current-page">{{ currentPage }}</span>
+    <span class="separator">de</span>
+    <span class="total-pages">{{ totalPages }}</span>
+  </div>
+
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages"
+          class="gold-button btn px-4 py-2">
+    Siguiente<i class="fas fa-chevron-right ms-2"></i>
+  </button>
+</div>
+
+<!-- Estado de carga -->
+<div *ngIf="loading" class="loading-casino text-center">
+  <div class="spinner-gold">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="spinner-dog"></div>
+  </div>
+  <p>cargando datos de tus peludos...</p>
+</div>
+
+<!-- Elementos decorativos de fondo -->
+<div class="luxury-bg-elements">
+  <div class="gold-ornament top-left"></div>
+  <div class="gold-ornament top-right"></div>
+  <div class="gold-ornament bottom-left"></div>
+  <div class="gold-ornament bottom-right"></div>
+
+  <div class="animal-icon dog-icon" style="top: 15%; left: 10%;"></div>
+  <div class="animal-icon cat-icon" style="top: 25%; right: 15%;"></div>
+  <div class="animal-icon paw-icon" style="bottom: 20%; left: 20%;"></div>
+  <div class="animal-icon bird-icon" style="bottom: 30%; right: 10%;"></div>
+</div>

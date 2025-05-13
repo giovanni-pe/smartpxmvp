@@ -1,0 +1,10 @@
+<div class="text-center">
+    <span>HUMEDAD DEL SUELO</span>
+    <p *ngIf="avgSoilMoisture() === null" class="loading">
+      Loading...
+    </p>
+    <p *ngIf="avgSoilMoisture() !== null" class="result">
+      {{ avgSoilMoisture() }}%
+    </p>
+  </div>
+  

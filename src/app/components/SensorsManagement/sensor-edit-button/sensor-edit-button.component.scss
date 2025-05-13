@@ -1,0 +1,82 @@
+.modal {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-dialog {
+    max-width: 500px;
+  }
+  
+  .is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+  }
+  
+  /* Botones toggle personalizados */
+  .btn-toggle {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+  
+  .btn-toggle.active {
+    background-color: #28a745;
+    transform: scale(1.05);
+  }
+  
+  .btn-toggle.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  .btn-toggle:hover:not(.disabled) {
+    cursor: pointer;
+  }
+  
+  /* Estilos para el botón de enviar señal */
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-success:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Mensaje de advertencia */
+  .text-danger {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Estilo del botón cerrar en la cabecera del modal */
+  .close {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    opacity: 0.5;
+  }
+  
+  .close:hover {
+    color: #000;
+    opacity: 0.75;
+  }
+  

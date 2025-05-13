@@ -1,0 +1,53 @@
+.language-switcher {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  h4{
+      color: black;
+  }
+  .language-button {
+    font-size: 1em;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+  
+    &:hover {
+      border-color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+      opacity: 1;
+      filter: none;
+    }
+  
+    &.active {
+      font-weight: bold;
+      border-color: #fff;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      opacity: 1;
+      filter: none;
+    }
+  
+    &:not(.active) {
+      opacity: 0.3;
+      filter: grayscale(100%);
+    }
+  }
+  
+  /* Estilos específicos para cada idioma */
+  .en-button {
+    background-color: #3C3B6E;
+    background-image: linear-gradient(to right, #3C3B6E 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #B22234 66.66%);
+  }
+  
+  .es-button {
+    background-color: #C60B1E;
+    background-image: linear-gradient(to right, #AA151B 33.33%, #F1BF00 33.33%, #F1BF00 66.66%, #AA151B 66.66%);
+  }

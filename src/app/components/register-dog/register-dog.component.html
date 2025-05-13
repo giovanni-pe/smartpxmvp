@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="dogForm">
+  <div class="form-group">
+    <label for="name">Nombre del Perro</label>
+    <input type="text" id="name" formControlName="name" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label for="breed">Raza</label>
+    <input type="text" id="breed" formControlName="breed" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label for="age">Edad</label>
+    <input type="text" id="age" formControlName="age" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label for="size">Tamaño</label>
+    <input type="text" id="size" formControlName="size" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="energy_level">Nivel de Energía</label>
+    <select id="energy_level" formControlName="energy_level" class="form-control" required>
+      <option value="low">Bajo</option>
+      <option value="medium">Medio</option>
+      <option value="high">Alto</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="photo">Foto del Perro</label>
+    <input type="file" id="photo" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="dogForm.invalid">Registrar Perro</button>
+
+  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</form>

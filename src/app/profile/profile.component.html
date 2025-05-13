@@ -1,0 +1,10 @@
+<div *ngIf="userId">
+    <h1>User Profile</h1>
+    <p><strong>User ID:</strong> {{ userId }}</p>
+    <p><strong>Email:</strong> {{ userEmail }}</p>
+    <p><strong>Role:</strong> {{ userRole }}</p>
+  </div>
+  <div *ngIf="!userId">
+    <p>You are not logged in.</p>
+  </div>
+  

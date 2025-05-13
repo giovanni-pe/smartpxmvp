@@ -1,0 +1,58 @@
+<div class="welcome-container">
+  <!-- Header con enlace de inicio de sesión -->
+  <header class="header">
+    <div class="login-link-container">
+      <a href="#/login" class="login-link">Iniciar Sesión</a>
+    </div>
+  </header>
+
+  <!-- Carrusel de imágenes -->
+  <div class="carousel-wrapper">
+    <app-carousel></app-carousel>
+  </div>
+
+  <!-- Tarjeta de bienvenida con formulario -->
+  <div class="welcome-card">
+    <div class="content">
+      <h1>Bienvenido a Smart Musa</h1>
+      <p>
+        Nos especializamos en la producción y gestión inteligente de hijuelos de plátano mediante tecnologías innovadoras de IoT.
+      </p>
+      <button class="explore-button" (click)="toggleForm()">Explorar y Hacer un Pedido</button>
+
+      <!-- Componente de pedidos de bananos -->
+      <div *ngIf="showForm" class="order-form">
+        <h2>Realiza tu Pedido</h2>
+        <app-banana-order-form></app-banana-order-form> <!-- Aquí se integra el formulario de pedidos de bananos -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="info-sections">
+      <div class="row">
+      <div class=" info-section ">
+        <h3>Nuestra Misión</h3>
+        <p>Proveer soluciones tecnológicas que permitan a los agricultores mejorar la producción y calidad de sus cultivos a través de un monitoreo constante y eficiente.</p>
+      </div>
+      <div class="info-section ">
+        <h3>Nuestros Servicios</h3>
+        <ul>
+          <li>Monitoreo en tiempo real de cultivos</li>
+          <li>Optimización del uso de recursos hídricos</li>
+          <li>Reportes detallados sobre la salud del cultivo</li>
+          <li>Consultoría en la implementación de tecnologías IoT</li>
+        </ul>
+      </div>
+      <div class=" info-section ">
+        <h3>Contacto</h3>
+        <p>Email: smartmuas&#64;gmail.com</p>
+
+        <p>Teléfono: +51 910 731 863</p>
+        <p>Dirección: Av. Universitaria, Tingo María, Perú</p>
+      </div>
+    </div>
+  </div>
+  </footer>
+</div>

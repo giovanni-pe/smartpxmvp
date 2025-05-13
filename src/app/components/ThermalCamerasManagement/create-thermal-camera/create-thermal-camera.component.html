@@ -1,0 +1,89 @@
+
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>SmartMusa</strong> <small>team</small>
+    </c-card-header>
+    <c-card-body>
+      <div style="display: flex; justify-content: center; align-items: center; height: 100px; margin-bottom: 20px;">
+        <h2 style="background-color: #042c57; color: white; padding: 10px 20px; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        Registro de Camaras Termicas
+        </h2>
+      </div>
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <!-- Mensajes de éxito o error -->
+        <c-alert *ngIf="successMessage" color="success" class="d-flex align-items-center">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"></use>
+          </svg>
+          <div>{{ successMessage }}</div>
+        </c-alert>
+      
+        <c-alert *ngIf="errorMessage" color="danger" class="d-flex align-items-center">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Error:">
+            <use xlink:href="#exclamation-triangle-fill"></use>
+          </svg>
+          <div>{{ errorMessage }}</div>
+        </c-alert>
+      
+        <!-- Campos del formulario -->
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input id="name" formControlName="name" class="form-control" placeholder="Nombre de la cámara" />
+          <div *ngIf="createForm.get('name')?.invalid && createForm.get('name')?.touched" class="text-danger">
+            El nombre es requerido.
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="latitude">Latitud</label>
+          <input id="latitude" formControlName="latitude" class="form-control" placeholder="Latitud" type="number" step="any"/>
+          <div *ngIf="createForm.get('latitude')?.invalid && createForm.get('latitude')?.touched" class="text-danger">
+            Ingrese una latitud válida entre -90 y 90.
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="longitude">Longitud</label>
+          <input id="longitude" formControlName="longitude" class="form-control" placeholder="Longitud" type="number" step="any"/>
+          <div *ngIf="createForm.get('longitude')?.invalid && createForm.get('longitude')?.touched" class="text-danger">
+            Ingrese una longitud válida entre -180 y 180.
+          </div>
+        </div>
+      
+        <!-- Otros campos -->
+        <div class="form-group">
+          <label for="length">Lado de la cámara</label>
+          <input id="length" formControlName="length" class="form-control" placeholder="Longitud" type="number" />
+          <div *ngIf="createForm.get('length')?.invalid && createForm.get('length')?.touched" class="text-danger">
+            Ingrese un número válido para el lado de la cámara.
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="width">Anchura de la cámara</label>
+          <input id="width" formControlName="width" class="form-control" placeholder="Anchura" type="number" />
+          <div *ngIf="createForm.get('width')?.invalid && createForm.get('width')?.touched" class="text-danger">
+            Ingrese un número válido para la anchura de la cámara.
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="height">Altura de la cámara</label>
+          <input id="height" formControlName="height" class="form-control" placeholder="Altura" type="number" />
+          <div *ngIf="createForm.get('height')?.invalid && createForm.get('height')?.touched" class="text-danger">
+            Ingrese un número válido para la altura de la cámara.
+          </div>
+        </div>
+      
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea id="description" formControlName="description" class="form-control" placeholder="Descripción"></textarea>
+        </div>
+      
+        <!-- Botón de envío -->
+        <button type="submit" class="btn btn-primary" [disabled]="createForm.invalid">Crear Cámara</button>
+      </form>
+    </c-card-body>
+  </c-card>
+</c-col>

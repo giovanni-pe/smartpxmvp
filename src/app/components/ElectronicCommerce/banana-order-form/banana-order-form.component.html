@@ -1,0 +1,91 @@
+<mat-card>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100px; margin-bottom: 20px;">
+    <h2 style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      Solicitud de Pedidos
+    </h2>
+  </div>
+  
+  <form [formGroup]="bananaOrderForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <ng-container *ngFor="let control of ['buyerName', 'contactNumber']; let i = index">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>{{ control === 'buyerName' ? 'Nombre del Comprador' : 'Número de Contacto' }}</mat-label>
+            <input matInput [id]="control" [formControl]="getFormControl(control)" [type]="control === 'contactNumber' ? 'text' : 'text'" required>
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Producto</mat-label>
+          <mat-select id="productType" formControlName="productType" required>
+            <mat-option value="platano">Plátano</mat-option>
+            <mat-option value="banano">Banano</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Número de Hijuelos</mat-label>
+          <input matInput id="hijuelosQuantity" formControlName="hijuelosQuantity" type="number" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let field of ['address1', 'address2', 'city', 'state', 'zip', 'country']; let i = index">
+      <div class="col-md-6" *ngIf="i < 2; else secondRow">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>
+            {{ field === 'address1' ? 'Dirección de Entrega 1' 
+              : field === 'address2' ? 'Dirección de Entrega 2' 
+              : field === 'city' ? 'Ciudad' 
+              : field === 'state' ? 'Estado' 
+              : field === 'zip' ? 'Código Postal' 
+              : field === 'country' ? 'País' 
+              : field }}
+          </mat-label>
+          <input matInput [id]="field" [formControl]="getFormControl('address.' + field)" 
+                 [type]="field === 'city' || field === 'state' || field === 'country' ? 'text' : 'text'" 
+                 [required]="field !== 'address2'">
+        </mat-form-field>
+      </div>
+      <ng-template #secondRow>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>
+              {{ field === 'city' ? 'Ciudad' 
+                : field === 'state' ? 'Estado' 
+                : field === 'zip' ? 'Código Postal' 
+                : field === 'country' ? 'País' 
+                : field }}
+            </mat-label>
+            <input matInput [id]="field" [formControl]="getFormControl('address.' + field)" 
+                   [type]="field === 'city' || field === 'state' || field === 'country' ? 'text' : 'text'" required>
+          </mat-form-field>
+        </div>
+      </ng-template>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Fecha de Entrega</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="deliveryDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker [startAt]="minDate"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <button mat-raised-button color="accent" class="w-100 mb-2" (click)="generatePayment()">Generar Pago</button>
+        <button mat-raised-button color="primary" type="submit" class="w-100" [disabled]="!isPaymentGenerated">Registrar Pedido</button>
+      </div>
+    </div>
+  </form>
+</mat-card>

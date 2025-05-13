@@ -1,0 +1,6 @@
+<div class="greenhouse-count-container text-center">
+<span>CAMARAS REGISTRADAS</span>
+  <p *ngIf="greenhouseCount === null && !errorMessage">Loading...</p>
+  <p *ngIf="greenhouseCount !== null">{{ greenhouseCount }} U</p>
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+</div>

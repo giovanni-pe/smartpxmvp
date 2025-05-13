@@ -1,0 +1,389 @@
+/* You can add global styles to this file, and also import other style files */
+
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+
+@import "theme";
+
+// Some temp fixes
+//@import "fixes";
+
+// If you want to add custom CSS you can put it here.
+@import "custom";
+
+// Examples
+// We use those styles to show code examples, you should remove them in your application.
+@import "examples";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Otras opciones de temas claros */
+/* styles.scss */
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+// Variables de color modernas
+$primary: #243344;
+$secondary: #3a5169;
+$accent: #4fc1e9;
+$light: #f5f7fa;
+$dark: #1a202c;
+
+// Fuentes modernas
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Estilos base
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $light;
+  color: $dark;
+  line-height: 1.6;
+}
+
+// Contenedor principal mejorado
+.container {
+  padding: 1rem;
+  max-width: 1200px;
+}
+
+// Títulos modernos
+h2 {
+  font-weight: 600;
+  color: $primary;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: $accent;
+    border-radius: 3px;
+  }
+}
+
+// Cards modernas
+.card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// Formularios modernos
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s;
+
+  &:focus {
+    border-color: $accent;
+    box-shadow: 0 0 0 3px rgba($accent, 0.2);
+  }
+}
+
+// Botones modernos
+.btn {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s;
+
+  &-primary {
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover {
+      background-color: darken($primary, 5%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &-secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+
+    &:hover {
+      background-color: darken($secondary, 5%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &-outline-primary {
+    border-color: $primary;
+    color: $primary;
+
+    &:hover {
+      background-color: $primary;
+      color: white;
+    }
+  }
+}
+
+// Grid responsive
+.row {
+  margin: 0 -0.75rem;
+}
+
+.col-lg-4, .col-md-6 {
+  padding: 0.75rem;
+}
+
+// Alert moderno
+.alert {
+  border-radius: 8px;
+}
+
+// Media queries para móviles
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .card .card-img-top {
+    height: 150px;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Ajustes para los filtros en móvil
+  .row.mb-3 {
+    flex-direction: column;
+
+    .col-md-4 {
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+
+    .text-end {
+      text-align: left !important;
+    }
+  }
+}
+c-sidebar.sidebar {
+  background-color: #1e1e1e !important; // fondo principal
+  border-right: 2px solid #ffc107 !important;
+  color: #ffffff !important;
+  font-family: 'Segoe UI', sans-serif;
+
+  .sidebar-header,
+  .sidebar-footer {
+    background-color: #121212 !important;
+    border-color: #ffc107 !important;
+  }
+
+  .sidebar-brand {
+    padding: 1rem;
+    text-align: center;
+
+    img {
+      max-height: 60px;
+    }
+  }
+
+  .sidebar-nav {
+    padding: 1rem 0;
+
+    .nav-item,
+    .nav-group {
+      margin-bottom: 0.5rem;
+
+      .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+        border-left: 3px solid transparent;
+        transition: background 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+          background-color: rgba(255, 193, 7, 0.1) !important;
+          border-left-color: #ffc107 !important;
+        }
+
+        &.active {
+          background-color: rgba(255, 193, 7, 0.2) !important;
+          border-left-color: #ffc107 !important;
+          color: #ffc107 !important;
+        }
+
+        .nav-icon {
+          color: #ffc107 !important;
+          margin-right: 0.5rem;
+        }
+
+        .badge {
+          background-color: #ffc107 !important;
+          color: #1e1e1e !important;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .nav-group-toggle {
+      color: #ffc107 !important;
+
+      &:hover {
+        background-color: rgba(255, 193, 7, 0.1) !important;
+      }
+    }
+
+    .nav-group-items {
+      padding-left: 1.25rem;
+    }
+  }
+
+  .sidebar-toggler {
+    background-color: #ffc107 !important;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  // Scrollbar (ng-scrollbar)
+  ::ng-deep .ng-scrollbar-wrapper {
+    scrollbar-color: #ffc107 #1e1e1e !important;
+  }
+
+  ::ng-deep .ng-scroll-thumb {
+    background-color: #ffc107 !important;
+    border-radius: 8px;
+  }
+
+  ::ng-deep .ng-scroll-track {
+    background-color: #2a2a2a !important;
+  }
+}
+c-container.container-fluid {
+  background-color: #1e1e1e !important; // Fondo header
+  border-bottom: 2px solid #ffc107 !important;
+
+  .header-toggler {
+    background-color: transparent !important;
+    color: #ffc107 !important;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.15);
+      color: #ffdd57 !important;
+    }
+
+    svg {
+      fill: #ffc107 !important;
+    }
+  }
+
+  .header-nav {
+    .nav-link {
+      color: #ffffff !important;
+      font-weight: 500;
+      transition: color 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        color: #ffc107 !important;
+      }
+
+      &.active {
+        color: #ffc107 !important;
+        font-weight: bold;
+      }
+
+      svg {
+        color: #ffc107 !important;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: rotate(15deg);
+        }
+      }
+    }
+
+    .dropdown-menu {
+      background-color: #282828 !important;
+      border: 1px solid #ffc107 !important;
+      box-shadow: 0 4px 16px rgba(255, 193, 7, 0.25);
+      border-radius: 8px;
+
+      .dropdown-item {
+        color: #f0f0f0 !important;
+        font-weight: 500;
+        transition: background 0.2s ease, padding-left 0.2s ease;
+
+        &:hover {
+          background-color: rgba(255, 193, 7, 0.1) !important;
+          padding-left: 1.5rem;
+          color: #ffc107 !important;
+        }
+
+        svg {
+          color: #ffc107 !important;
+        }
+
+        .badge {
+          font-weight: bold;
+          background-color: #ffc107 !important;
+          color: #1e1e1e !important;
+        }
+      }
+
+      .dropdown-header {
+        background-color: #141414 !important;
+        color: #ffc107 !important;
+        font-weight: 700;
+      }
+
+      hr.dropdown-divider {
+        border-color: #ffc107 !important;
+        opacity: 0.6;
+      }
+    }
+
+    .avatar {
+      border: 2px solid #ffc107 !important;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: rotate(5deg) scale(1.05);
+      }
+    }
+
+    .vr {
+      border-color: #ffc107 !important;
+      opacity: 0.4;
+    }
+  }
+}

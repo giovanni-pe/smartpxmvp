@@ -1,0 +1,81 @@
+<app-widgets-dropdown/>
+<c-card class="my-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic">Reporte de temperatura y humedad</h4>
+        <div class="small text-body-secondary">Enero - diciembre 2024</div>
+      </c-col>
+      <c-col class="d-none d-md-block" sm="7">
+        <button cButton class="float-end" color="primary" aria-label="Descargar">
+          <svg cIcon name="cilCloudDownload"></svg>
+        </button>
+        <form [formGroup]="trafficRadioGroup">
+          <c-button-group class="float-end me-3" role="group">
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Day"
+              id="dayRadio"
+            />
+            <label
+              (click)="setTrafficPeriod('Day')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+              for="dayRadio"
+            >
+              Día
+            </label>
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Month"
+              id="radioMonth"
+            />
+            <label
+              (click)="setTrafficPeriod('Month')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+              for="radioMonth"
+            >
+              Mes
+            </label>
+            <input
+              class="btn-check"
+              formControlName="trafficRadio"
+              type="radio"
+              value="Year"
+              id="radioYear"
+            />
+            <label
+              (click)="setTrafficPeriod('Year')"
+              cButton
+              cFormCheckLabel
+              color="secondary"
+              variant="outline"
+              for="radioYear"
+            >
+              Año
+            </label>
+          </c-button-group>
+        </form>
+      </c-col>
+    </c-row>
+    <c-chart
+      [data]="mainChart.data"
+      [height]="300"
+      [ngStyle]="{ 'marginTop.px': 40 }"
+      [options]="mainChart.options"
+      [type]="mainChart.type"
+      (chartRef)="handleChartRef($event)"
+    >
+      Gráfico principal
+    </c-chart>
+  </c-card-body>
+</c-card>

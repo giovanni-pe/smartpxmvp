@@ -1,0 +1,7 @@
+<div class="text-center">
+    <span>TEMPERATURA AMBIENTAL</span>
+    <p *ngIf="avgTemperature() === null && !errorMessage">Loading...</p>
+    <p *ngIf="avgTemperature() !== null">{{ avgTemperature() }} °C</p>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  </div>
+  

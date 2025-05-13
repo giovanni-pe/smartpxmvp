@@ -1,0 +1,113 @@
+<button class="btn btn-primary btn-sm" (click)="openEditModal()">
+  Controlar
+</button>
+
+<div
+  *ngIf="showModal"
+  class="modal fade show d-block"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editSensorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editSensorModalLabel">Controlar</h5>
+        <button
+          type="button"
+          class="close position-absolute top-0 end-0 m-2"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="updateSensor()">
+          <!-- Campo tipo -->
+          <div class="form-group mb-3">
+            <label for="type">Tipo</label>
+            <input
+              formControlName="type"
+              id="type"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid':
+                  editForm.get('type')?.invalid &&
+                  editForm.get('type')?.touched
+              }"
+            />
+            <div
+              *ngIf="
+                editForm.get('type')?.invalid &&
+                editForm.get('type')?.touched
+              "
+              class="invalid-feedback"
+            >
+              El tipo es requerido.
+            </div>
+          </div>
+
+          <!-- Toggle para Estado -->
+          <div class="form-group mb-3">
+            <label for="status" class="form-label">Estado</label>
+            <div>
+              <button
+                type="button"
+                class="btn-toggle"
+                [ngClass]="{
+                  'active': editForm.get('status')?.value === 1
+                }"
+                (click)="toggleStatus()"
+              >
+                {{ editForm.get('status')?.value === 1 ? 'Encendido' : 'Apagado' }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Toggle para Estado de Riego (Deshabilitado si el sensor está apagado) -->
+          <div class="form-group mb-3">
+            <label for="irrigation_status" class="form-label">Estado de Riego</label>
+            <div>
+              <button
+                type="button"
+                class="btn-toggle"
+                [ngClass]="{
+                  'active': editForm.get('irrigation_status')?.value === 1,
+                  'disabled': editForm.get('status')?.value === 0
+                }"
+                (click)="toggleIrrigationStatus()"
+                [disabled]="editForm.get('status')?.value === 0"
+              >
+                {{ editForm.get('irrigation_status')?.value === 1 ? 'Encendido' : 'Apagado' }}
+              </button>
+            </div>
+            <!-- Mensaje de advertencia si el sensor está apagado -->
+            <div *ngIf="editForm.get('status')?.value === 0" class="text-danger">
+              El sensor debe estar encendido para activar el sistema de riego.
+            </div>
+          </div>
+
+          <!-- Botones de acción en el modal -->
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="editForm.invalid"
+            >
+              Enviar señal
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="closeModal()"
+            >
+              Cerrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
