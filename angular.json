@@ -70,8 +70,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "20kb",
+                  "maximumError": "20kb"
                 }
               ],
               "outputHashing": "all",
@@ -107,7 +107,7 @@
               "buildTarget": "coreui-free-angular-admin-template:build:development"
             }
           },
-          
+
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
