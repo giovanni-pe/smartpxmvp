@@ -1,15 +1,55 @@
 <div class="smartpx-el-dorado min-vh-100 d-flex flex-row align-items-center">
-  <c-container breakpoint="md">
+  <c-container class="py-3">
+    <!-- Partículas flotantes -->
+    <div class="particles-container">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+      <div class="particle particle-5"></div>
+      <div class="particle particle-6"></div>
+    </div>
+
+    <!-- Cachorro con emociones (ahora más pequeño y decorativo) -->
+    <div class="emotion-dog-container" [ngClass]="dogEmotion">
+      <div class="emotion-dog"></div>
+    </div>
+
+    <!-- Iconos flotantes de Perritos -->
+    <div class="dog-icon dog-icon-1" [class.animate]="focusedField === 'email'"></div>
+    <div class="dog-icon dog-icon-2" [class.animate]="focusedField === 'password'"></div>
+    <div class="dog-icon dog-icon-3" [class.run-animation]="isLoggingIn"></div>
+
     <c-row class="justify-content-center">
-      <c-col lg="10" xl="8">
-        <c-card-group>
+      <c-col xs="12" sm="12" md="10" lg="9" xl="8">
+        <c-card-group class="flex-column flex-md-row shadow-lg">
           <!-- Tarjeta de Login -->
-          <c-card class="luxury-login-card p-4">
+                     <c-card class="luxury-login-card p-4 mb-0">
             <div class="gold-overlay"></div>
             <c-card-body>
               <form cForm (ngSubmit)="login()">
-                <h1 class="gold-text">Inicio de Sesión</h1>
-                <p class="text-luxury-secondary">Accede a tu cuenta, SmartPX, Innovacion </p>
+                <!-- Mensaje del perro dentro de la tarjeta -->
+                <div class="dog-speech-card mb-4" *ngIf="dogSpeech" [ngClass]="dogEmotion">
+                  <div class="dog-avatar-small" [ngClass]="dogEmotion"></div>
+                  <div class="speech-content">
+                    <p>{{dogSpeech}}</p>
+                  </div>
+                  <div class="sparkles" *ngIf="showSparkles"></div>
+                </div>
+
+                <!-- Premio aleatorio -->
+                <div *ngIf="showReward" class="reward-notification" [@rewardAnimation]>
+                  <div class="reward-icon"></div>
+                  <div class="reward-text">
+                    <p class="m-0">¡WOW! ¡Has ganado {{rewardAmount}} puntos!</p>
+                    <small>Inicia sesión para reclamarlos</small>
+                  </div>
+                </div>
+
+                <div class="text-center text-md-start mb-4">
+                  <h1 class="gold-text">¡Woof! Bienvenido</h1>
+                  <p class="text-luxury-secondary">Inicia sesión para pasear con nosotros</p>
+                </div>
 
                 <!-- Input de Email -->
                 <c-input-group class="mb-3 luxury-input">
@@ -26,7 +66,15 @@
                     cFormControl
                     placeholder="Correo Electrónico"
                     autoComplete="email"
+                    (focus)="onInputFocus('email')"
+                    (blur)="onInputBlur()"
+                    (input)="onInputChange()"
                   />
+                  <div class="input-feedback" *ngIf="focusedField === 'email'">
+                    <div class="paw-rating" [ngClass]="emailQualityClass">
+                      <span class="paw" *ngFor="let i of [1,2,3,4,5]" [ngClass]="{'paw-active': i <= emailQualityStars}"></span>
+                    </div>
+                  </div>
                 </c-input-group>
 
                 <!-- Input de Contraseña -->
@@ -35,7 +83,7 @@
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
                   <input
-                    type="password"
+                    [type]="showPassword ? 'text' : 'password'"
                     id="password"
                     class="form-control"
                     [(ngModel)]="credentials.password"
@@ -44,55 +92,112 @@
                     cFormControl
                     placeholder="Contraseña"
                     autoComplete="current-password"
+                    (focus)="onInputFocus('password')"
+                    (blur)="onInputBlur()"
+                    (input)="onInputChange()"
                   />
+                  <span cInputGroupText class="password-toggle" (click)="togglePasswordVisibility()">
+                    <svg cIcon [name]="showPassword ? 'cilEyeOff' : 'cilEye'"></svg>
+                  </span>
+                  <div class="input-feedback" *ngIf="focusedField === 'password'">
+                    <div class="paw-rating" [ngClass]="passwordQualityClass">
+                      <span class="paw" *ngFor="let i of [1,2,3,4,5]" [ngClass]="{'paw-active': i <= passwordQualityStars}"></span>
+                    </div>
+                  </div>
                 </c-input-group>
 
                 <!-- Mensaje de error -->
-                <div *ngIf="loginError" class="error-message gold-error">
+                <div *ngIf="loginError" class="error-message gold-error mb-3" (mouseenter)="setDogEmotion('sad')" (mouseleave)="checkFormState()">
+                  <div class="dog-bark-animation"></div>
                   {{ loginError }}
                 </div>
 
                 <!-- Botones -->
-                <c-row>
-                  <c-col xs="6">
-                    <button type="submit" cButton class="px-4 gold-button">
-                      Iniciar Sesión
+                <c-row class="gy-3">
+                  <c-col xs="12" sm="6">
+                    <button type="submit" cButton class="w-100 gold-button pulse-button d-flex align-items-center justify-content-center gap-2" (click)="startLoginAnimation()" (mouseenter)="setDogEmotion('excited')" (mouseleave)="checkFormState()">
+                      <span *ngIf="!isLoggingIn">Iniciar Sesión</span>
+                      <span *ngIf="isLoggingIn">Conectando...</span>
+                      <div *ngIf="isLoggingIn" class="spinner-paw"></div>
                     </button>
                   </c-col>
-                  <c-col class="text-right" xs="6">
-                    <button cButton class="px-0 gold-link-button">
+                  <c-col xs="12" sm="6" class="text-center text-sm-end">
+                    <button type="button" cButton class="gold-link-button">
                       ¿Olvidaste tu contraseña?
                     </button>
                   </c-col>
                 </c-row>
+
+                <!-- Streak de días y estadísticas de bonificación -->
+                <div class="streak-container mt-4">
+                  <div class="streak-days">
+                    <div class="streak-label">¡Racha de días!</div>
+                    <div class="day-dots">
+                      <div class="day-dot" [ngClass]="{'day-completed': loginStreak >= 1}">L</div>
+                      <div class="day-dot" [ngClass]="{'day-completed': loginStreak >= 2}">M</div>
+                      <div class="day-dot" [ngClass]="{'day-completed': loginStreak >= 3}">M</div>
+                      <div class="day-dot" [ngClass]="{'day-completed': loginStreak >= 4}">J</div>
+                      <div class="day-dot" [ngClass]="{'day-completed': loginStreak >= 5}">V</div>
+                      <div class="day-dot jackpot-dot" [ngClass]="{'day-completed': loginStreak >= 6}">S</div>
+                      <div class="day-dot jackpot-dot" [ngClass]="{'day-completed': loginStreak >= 7}">D</div>
+                    </div>
+                    <div class="streak-bonus" *ngIf="loginStreak > 0">
+                      <div class="bonus-icon"></div>
+                      <div>¡{{loginStreak}} día(s)! <span *ngIf="loginStreak >= 3">+{{loginStreak * 10}}% bonus</span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Daily chance -->
+                <div class="daily-chance mt-3" *ngIf="showDailyChance">
+                  <div class="daily-title">¡Tu oportunidad diaria!</div>
+                  <div class="chance-cards">
+                    <div class="chance-card" *ngFor="let card of dailyChanceCards; let i = index"
+                         [ngClass]="{'flipped': card.flipped, 'matched': card.matched}"
+                         (click)="flipDailyCard(i)">
+                      <div class="chance-card-inner">
+                        <div class="chance-card-front">
+                          <div class="card-paw"></div>
+                        </div>
+                        <div class="chance-card-back">
+                          <div class="card-reward">{{card.reward}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="chance-message" *ngIf="dailyChanceComplete">
+                    ¡Vuelve mañana por más premios!
+                  </div>
+                </div>
               </form>
             </c-card-body>
           </c-card>
 
           <!-- Tarjeta de Bienvenida -->
-          <c-card class="luxury-welcome-card text-white py-5">
+          <c-card class="luxury-welcome-card text-white py-5 mb-0 d-none d-md-block">
             <div class="gold-overlay"></div>
             <c-card-body class="text-center">
               <div>
-                <div class="sensor-icon mb-3">
-                  <img src="assets/icon.png" alt="Icon" style="width: 70px; height: 70px;">
+                <div class="dog-avatar mb-3">
+                  <div class="dog-animation"></div>
                 </div>
-                <h2 class="gold-text">Bienvenido a SMART Px</h2>
-
-
-                <button cButton class="mt-3 gold-outline-button" (click)="navigateToRegister()">
+                <h2 class="gold-text">Paseos SmartPx</h2>
+                <p class="text-luxury-secondary mb-4">La forma más inteligente de pasear a tu mejor amigo</p>
+                <button cButton class="mt-2 gold-outline-button" (click)="navigateToRegister()">
                   ¡Regístrate Ahora!
                 </button>
               </div>
             </c-card-body>
           </c-card>
+
+          <!-- Botón de registro para móviles -->
+          <div class="text-center mt-3 d-md-none">
+            <button cButton class="gold-outline-button px-4" (click)="navigateToRegister()">
+              ¿No tienes cuenta? ¡Regístrate!
+            </button>
+          </div>
         </c-card-group>
       </c-col>
     </c-row>
-
-    <!-- Iconos flotantes de IoT -->
-    <div class="iot-icon sensor-icon-1"></div>
-    <div class="iot-icon sensor-icon-2"></div>
-    <div class="iot-icon sensor-icon-3"></div>
   </c-container>
 </div>
