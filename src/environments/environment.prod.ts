@@ -3,5 +3,5 @@ export const environment = {
     apiBaseUrl: 'https://apiv2.smartpx.org/api',
     mapboxAccessToken:"jfdj"  // La URL de tu backend en producción
     ,
-     storageUrl:'https://apiv2.smartpx.org/'
+     storageUrl:'https://apiv2.smartpx.org'
   };

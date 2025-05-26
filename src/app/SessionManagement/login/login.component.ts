@@ -459,8 +459,8 @@ export class LoginComponent implements OnInit {
     this.dogSpeech = '¡Vamos a registrarte para que ganes premios exclusivos para nuevos usuarios!';
     this.showSparkles = true;
 
-    setTimeout(() => {
+
       this.router.navigate(['/register']);
-    }, 1000);
+
   }
 }
