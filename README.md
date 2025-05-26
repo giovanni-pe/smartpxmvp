@@ -13,7 +13,7 @@
    npm install -g @angular/cli
 ## Clonar el repositorio:
 
-git clone https://github.com/giovanni-pe/SmartMusa.git
+git clone https://github.com/giovanni-pe/SmartpX.git
 
 ## Installation
  

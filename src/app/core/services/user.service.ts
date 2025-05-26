@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment'; 
-interface CreateUserResponse {
-  success: boolean;
-  errors: string[];
-  detailedErrors: { code: string; data: string }[];
-  data: string;
+import { environment } from '../../../environments/environment';
+
+interface RegisterResponse {
+  message: string;
+  user: any;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl =`${environment.apiBaseUrl}/User`; 
+  // Update this to point to your Laravel endpoint
+  private apiUrl =`${environment.apiBaseUrl}/register-profile`;
 
   constructor(private http: HttpClient) {}
 
-  createUser(user: { email: string; firstName: string; lastName: string; password: string; tenantId: string; role: number; status: number }): Observable<CreateUserResponse> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'text/plain' });
-    return this.http.post<CreateUserResponse>(this.apiUrl, user, { headers });
+  registerUser(user: {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+    role: string;
+    experience?: string;
+  }): Observable<RegisterResponse> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<RegisterResponse>(this.apiUrl, user, { headers });
   }
 }

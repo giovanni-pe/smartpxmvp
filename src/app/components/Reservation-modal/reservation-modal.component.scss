@@ -1,0 +1,451 @@
+
+/* Variables de estilo El Dorado */
+$gold-primary: #FFD700;
+$gold-secondary: #D4AF37;
+$gold-dark: #996515;
+$dark-primary: rgb(33, 37, 41);
+$dark-secondary: #243344;
+$luxury-bg: #1a1a1a;
+$card-bg: #2a2a2a;
+$text-light: #f5f5f5;
+/* Modal de Reserva - Estilo El Dorado */
+.reservation-modal {
+  .modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 1050;
+
+    &.show {
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  .modal-dialog {
+    max-width: 800px;
+    margin: 1.75rem auto;
+    transition: transform 0.3s ease-out;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, $dark-primary 0%, $luxury-bg 100%);
+    border: 1px solid rgba($gold-primary, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23D4AF37" d="M50 0 L100 50 L50 100 L0 50 Z" opacity="0.05"/></svg>');
+      z-index: 0;
+    }
+  }
+
+  .modal-header {
+    background: linear-gradient(135deg, rgba($gold-dark, 0.8) 0%, rgba($gold-secondary, 0.8) 100%);
+    color: $text-light;
+    border-bottom: 1px solid rgba($gold-primary, 0.3);
+    padding: 1.25rem 1.5rem;
+    position: relative;
+    z-index: 1;
+
+    .modal-title {
+      font-weight: 700;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+
+      i {
+        color: $gold-primary;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .close {
+      color: $text-light;
+      opacity: 0.8;
+      text-shadow: none;
+      transition: all 0.3s ease;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.75rem;
+      line-height: 1;
+
+      &:hover {
+        opacity: 1;
+        color: $gold-primary;
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+
+    .walker-info-card {
+      background: rgba($card-bg, 0.7);
+      border-radius: 12px;
+      border: 1px solid rgba($gold-primary, 0.2);
+      margin-bottom: 2rem;
+      overflow: hidden;
+
+      .walker-photo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $gold-primary;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .walker-details {
+        h6 {
+          color: $gold-primary;
+          font-weight: 700;
+          margin-bottom: 0.25rem;
+        }
+
+        p {
+          color: rgba($text-light, 0.8);
+          margin-bottom: 0.25rem;
+          font-size: 0.9rem;
+
+          strong {
+            color: $gold-secondary;
+          }
+        }
+
+        .rating-badge {
+          background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+          color: $dark-primary;
+          font-weight: 700;
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          display: inline-flex;
+          align-items: center;
+
+          i {
+            margin-right: 0.25rem;
+          }
+        }
+      }
+    }
+
+    .form-label {
+      color: $gold-primary;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-right: 0.5rem;
+        width: 20px;
+        text-align: center;
+      }
+
+      &::after {
+        content: "*";
+        color: rgba($gold-primary, 0.7);
+        margin-left: 3px;
+      }
+
+      &:not([for="notes"])::after {
+        display: none;
+      }
+    }
+
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba($gold-primary, 0.3);
+      color: $text-light;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
+
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: $gold-primary;
+        box-shadow: 0 0 0 3px rgba($gold-primary, 0.2);
+        color: $text-light;
+      }
+
+      &::placeholder {
+        color: rgba($text-light, 0.4);
+      }
+    }
+
+    .form-select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23FFD700" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+    }
+
+    textarea.form-control {
+      min-height: 100px;
+    }
+
+    .availability-check-btn {
+      background: linear-gradient(135deg, rgba($gold-primary, 0.2), rgba($gold-secondary, 0.3));
+      border: 1px solid rgba($gold-primary, 0.3);
+      color: $gold-primary;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        background: linear-gradient(135deg, rgba($gold-primary, 0.3), rgba($gold-secondary, 0.4));
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+
+    .alert {
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+      backdrop-filter: blur(5px);
+
+      &.alert-info {
+        background: rgba($dark-secondary, 0.7);
+        border-color: rgba($gold-primary, 0.3);
+        color: $gold-primary;
+      }
+
+      &.alert-success {
+        background: rgba(40, 167, 69, 0.15);
+        border-color: rgba(40, 167, 69, 0.3);
+        color: #28a745;
+      }
+
+      &.alert-warning {
+        background: rgba(255, 193, 7, 0.15);
+        border-color: rgba(255, 193, 7, 0.3);
+        color: #ffc107;
+      }
+
+      &.alert-danger {
+        background: rgba(220, 53, 69, 0.15);
+        border-color: rgba(220, 53, 69, 0.3);
+        color: #dc3545;
+      }
+
+      &.alert-light {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        color: rgba($text-light, 0.7);
+      }
+    }
+
+    .debug-info {
+      font-size: 0.75rem;
+      color: rgba($text-light, 0.5);
+      margin-top: 1rem;
+
+      strong {
+        color: rgba($gold-primary, 0.7);
+      }
+    }
+
+    .reservation-summary {
+      background: rgba($gold-dark, 0.1);
+      border: 1px solid rgba($gold-primary, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+
+      h6 {
+        color: $gold-primary;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+
+      ul {
+        margin-bottom: 0;
+        padding-left: 1.5rem;
+
+        li {
+          color: rgba($text-light, 0.9);
+          margin-bottom: 0.25rem;
+
+          strong {
+            color: $gold-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    background: rgba($dark-secondary, 0.8);
+    border-top: 1px solid rgba($gold-primary, 0.2);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba($gold-primary, 0.3);
+      color: $gold-primary;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: $gold-primary;
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+      border: none;
+      color: $dark-primary;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba($gold-primary, 0.3);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: all 0.5s ease;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($gold-primary, 0.4);
+
+        &::before {
+          left: 100%;
+        }
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        background: linear-gradient(135deg, rgba($gold-primary, 0.5), rgba($gold-secondary, 0.5));
+        color: rgba($dark-primary, 0.5);
+        cursor: not-allowed;
+        box-shadow: none;
+
+        &:hover {
+          transform: none;
+          box-shadow: none;
+
+          &::before {
+            left: -100%;
+          }
+        }
+      }
+    }
+  }
+
+  /* Animaciones de iconos flotantes */
+  .floating-icon {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.1;
+    z-index: 0;
+    animation: float 8s ease-in-out infinite;
+
+    &.dog-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm96-208c0-53-43-96-96-96s-96 43-96 96 43 96 96 96 96-43 96-96zm-96-64c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64z"/></svg>');
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    &.calendar-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="%23FFD700" d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>');
+      top: 70%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+
+    &.clock-icon {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>');
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 4s;
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .modal-dialog {
+      margin: 0.5rem;
+      max-width: calc(100% - 1rem);
+    }
+
+    .modal-header {
+      padding: 1rem;
+    }
+
+    .modal-body {
+      padding: 1rem;
+    }
+
+    .modal-footer {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .walker-info-card {
+      flex-direction: column;
+      text-align: center;
+
+      .walker-photo {
+        margin: 0 auto 1rem;
+      }
+    }
+  }
+}

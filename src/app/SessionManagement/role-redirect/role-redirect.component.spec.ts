@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeComponent } from './welcome.component';
+import { RoleRedirectComponent } from './role-redirect.component';
 
-describe('WelcomeComponent', () => {
-  let component: WelcomeComponent;
-  let fixture: ComponentFixture<WelcomeComponent>;
+describe('RoleRedirectComponent', () => {
+  let component: RoleRedirectComponent;
+  let fixture: ComponentFixture<RoleRedirectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WelcomeComponent]
+      imports: [RoleRedirectComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(WelcomeComponent);
+    fixture = TestBed.createComponent(RoleRedirectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

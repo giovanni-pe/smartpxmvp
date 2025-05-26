@@ -404,36 +404,55 @@ export class LoginComponent implements OnInit {
     if (this.rewardProbability > 0.8) this.rewardProbability = 0.8;
   }
 
-  login() {
-    this.startLoginAnimation();
+ login() {
+  this.startLoginAnimation();
 
-    // Simular un pequeño delay para crear anticipación
-    setTimeout(() => {
-      this.authService.login(this.credentials).subscribe({
-        next: () => {
-          this.dogSpeech = '¡INCREÍBLE! ¡Recompensas desbloqueadas! ¡Vamos a ver tus premios!';
+  // Simular un pequeño delay para crear anticipación
+  setTimeout(() => {
+    this.authService.login(this.credentials).subscribe({
+      next: () => {
+        this.dogSpeech = '¡INCREÍBLE! ¡Recompensas desbloqueadas! ¡Vamos a ver tus premios!';
 
-          // Pequeño delay para ver la animación completa y crear sensación de logro
-          setTimeout(() => {
-            this.router.navigate(['/walkers']);
-          }, 1500);
-        },
-        error: (err) => {
-          this.isLoggingIn = false;
-          this.showSparkles = false;
-          this.loginError = 'Login fallido. ¡No pierdas tus recompensas acumuladas!';
-          this.setDogEmotion('sad');
-          this.dogSpeech = 'Ups... ¡Un pequeño error! Vuelve a intentarlo para no perder tus premios diarios.';
-          console.error('Login failed', err);
+        // Pequeño delay para ver la animación completa y crear sensación de logro
+        setTimeout(() => {
+          // Obtener el rol guardado en localStorage
+          const userRole = localStorage.getItem('userRole');
 
-          // Crear un casi-éxito para mantener al usuario motivado
-          setTimeout(() => {
-            this.almostWonAnimation();
-          }, 3000);
-        }
-      });
-    }, 1200); // Delay más largo para crear más anticipación
-  }
+          // Redirigir según el rol
+          switch (userRole) {
+            case 'dog_walker':
+              this.router.navigate(['/walker-dashboard']);
+              break;
+            case 'client':
+              this.router.navigate(['/walkers']);
+              break;
+            case 'admin':
+              this.router.navigate(['/dashboard']);
+              break;
+            default:
+              // Redirigir a una ruta por defecto si no hay rol o rol desconocido
+              this.router.navigate(['/']);
+              break;
+          }
+        }, 1500);
+      },
+      error: (err) => {
+        this.isLoggingIn = false;
+        this.showSparkles = false;
+        this.loginError = 'Login fallido. ¡No pierdas tus recompensas acumuladas!';
+        this.setDogEmotion('sad');
+        this.dogSpeech = 'Ups... ¡Un pequeño error! Vuelve a intentarlo para no perder tus premios diarios.';
+        console.error('Login failed', err);
+
+        // Crear un casi-éxito para mantener al usuario motivado
+        setTimeout(() => {
+          this.almostWonAnimation();
+        }, 3000);
+      }
+    });
+  }, 1200); // Delay más largo para crear más anticipación
+}
+
 
   navigateToRegister() {
     this.setDogEmotion('excited');

@@ -1,0 +1,869 @@
+/* Variables de estilo El Dorado */
+$gold-primary: #FFD700;
+$gold-secondary: #D4AF37;
+$gold-dark: #996515;
+$dark-primary: rgb(33, 37, 41);
+$dark-secondary: #243344;
+$luxury-bg: #1a1a1a;
+$card-bg: #2a2a2a;
+$text-light: #f5f5f5;
+$success-color: #28a745;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$primary-color: #007bff;
+
+/* Animaciones base */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(-5px) rotate(-2deg); }
+  75% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes shine {
+  0% { background-position: -100px; }
+  100% { background-position: 200px; }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes wag-tail {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes run-across {
+  0% {
+    right: -100px;
+    transform: scaleX(1);
+  }
+  50% {
+    right: 50%;
+  }
+  100% {
+    right: 100vw;
+    transform: scaleX(-1);
+  }
+}
+
+/* Estructura principal del dashboard */
+.container-fluid {
+  background: linear-gradient(135deg, $dark-primary 0%, $luxury-bg 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dog-paw" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M25,20c-2,0-4,2-4,4s2,4,4,4s4-2,4-4S27,20,25,20z M15,15c-1.5,0-3,1.5-3,3s1.5,3,3,3s3-1.5,3-3S16.5,15,15,15z M35,15c-1.5,0-3,1.5-3,3s1.5,3,3,3s3-1.5,3-3S36.5,15,35,15z M25,8c-2,0-4,2-4,4s2,4,4,4s4-2,4-4S27,8,25,8z" fill="%23D4AF37" opacity="0.03"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dog-paw)"/></svg>') repeat;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+/* Elementos decorativos de lujo */
+.luxury-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gold-ornament {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4AF37" d="M50 0 L100 50 L50 100 L0 50 Z" opacity="0.08"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 12s ease-in-out infinite;
+
+  &.top-left {
+    top: 20px;
+    left: 20px;
+    animation-delay: 0s;
+  }
+  &.top-right {
+    top: 20px;
+    right: 20px;
+    transform: rotate(90deg);
+    animation-delay: 3s;
+  }
+  &.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    transform: rotate(270deg);
+    animation-delay: 6s;
+  }
+  &.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    transform: rotate(180deg);
+    animation-delay: 9s;
+  }
+}
+
+/* Iconos de animales animados */
+.animal-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba($gold-primary, 0.5));
+
+  &.dog-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.43 3.64 85.22 34.58 93.36z"/></svg>');
+    animation-delay: 0s;
+    top: 15%;
+    left: 8%;
+  }
+
+  &.cat-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32zm96 0c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');
+    animation-delay: 2s;
+    top: 45%;
+    right: 10%;
+  }
+
+  &.paw-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.43 3.64 85.22 34.58 93.36z"/></svg>');
+    animation-delay: 4s;
+    bottom: 25%;
+    left: 15%;
+  }
+
+  &.bird-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-80-208c0-44.1 35.9-80 80-80s80 35.9 80 80-35.9 80-80 80-80-35.9-80-80zm80-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"/></svg>');
+    animation-delay: 6s;
+    top: 70%;
+    right: 20%;
+  }
+}
+
+/* Header de bienvenida con estilo El Dorado */
+.bg-gradient-primary {
+  background: $card-bg !important;
+  border: 1px solid rgba($gold-primary, 0.3) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $gold-primary, $gold-secondary);
+    opacity: 1;
+  }
+
+  .gold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba($gold-primary, 0.05), rgba($gold-secondary, 0.1));
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 2;
+    background: rgba($dark-secondary, 0.8);
+    padding: 2rem;
+  }
+
+  h2 {
+    color: $gold-primary !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, $gold-primary, $gold-secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    color: rgba($text-light, 0.8) !important;
+  }
+
+  .badge {
+    background: linear-gradient(135deg, $gold-primary, $gold-secondary) !important;
+    color: $dark-primary !important;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 700;
+
+    iconify-icon {
+      color: $dark-primary;
+    }
+  }
+
+  .display-6 {
+    color: $gold-primary !important;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba($gold-primary, 0.3);
+  }
+
+  c-avatar {
+    border: 3px solid rgba($gold-primary, 0.5);
+    box-shadow: 0 4px 15px rgba($gold-primary, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba($gold-primary, 0.4);
+    }
+  }
+}
+
+/* Widgets de estadísticas estilo lujo */
+c-widget-stat-a {
+  .card {
+    background: $card-bg !important;
+    border: 1px solid rgba($gold-primary, 0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $gold-primary, $gold-secondary);
+    }
+
+    &:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 12px 25px rgba($gold-primary, 0.3) !important;
+    }
+
+    .card-body {
+      padding: 1.5rem !important;
+      position: relative;
+      z-index: 2;
+      background: rgba($dark-secondary, 0.6);
+    }
+
+    .widget-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      opacity: 0.2;
+      color: $gold-primary;
+      animation: float 6s ease-in-out infinite;
+
+      iconify-icon {
+        font-size: 3rem !important;
+        filter: drop-shadow(0 0 8px rgba($gold-primary, 0.5));
+      }
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      color: rgba($text-light, 0.7);
+      margin-top: 0.5rem;
+    }
+
+    // Títulos con estilo dorado
+    [title] {
+      color: $gold-primary !important;
+      font-weight: 800 !important;
+      text-shadow: 0 1px 3px rgba($gold-primary, 0.3);
+    }
+
+    [subtitle] {
+      color: rgba($text-light, 0.9) !important;
+      font-weight: 600 !important;
+    }
+  }
+
+  // Colores específicos manteniendo el tema dorado
+  &[color="primary"] .card {
+    border-left: 4px solid $primary-color;
+
+    .widget-icon iconify-icon {
+      color: $primary-color;
+    }
+  }
+
+  &[color="success"] .card {
+    border-left: 4px solid $success-color;
+
+    .widget-icon iconify-icon {
+      color: $success-color;
+    }
+  }
+
+  &[color="warning"] .card {
+    border-left: 4px solid $warning-color;
+
+    .widget-icon iconify-icon {
+      color: $warning-color;
+    }
+  }
+
+  &[color="info"] .card {
+    border-left: 4px solid $info-color;
+
+    .widget-icon iconify-icon {
+      color: $info-color;
+    }
+  }
+}
+
+/* Tarjetas generales estilo lujo */
+c-card {
+  .card {
+    background: $card-bg !important;
+    border: 1px solid rgba($gold-primary, 0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      box-shadow: 0 12px 25px rgba($gold-primary, 0.3) !important;
+
+      &::after {
+        content: '🐕';
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+        opacity: 0.3;
+        animation: wag-tail 1s ease-in-out infinite;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, $gold-primary, $gold-secondary);
+    }
+  }
+
+  .card-header {
+    background: rgba($dark-secondary, 0.8) !important;
+    border-bottom: 1px solid rgba($gold-primary, 0.3) !important;
+    padding: 1.25rem 1.5rem !important;
+
+    strong {
+      color: $gold-primary;
+      font-weight: 700;
+    }
+
+    small {
+      color: rgba($text-light, 0.7);
+    }
+  }
+
+  .card-body {
+    padding: 1.5rem !important;
+    background: rgba($dark-secondary, 0.6);
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Distribución de reservas */
+.border-end {
+  border-right: 2px solid rgba($gold-primary, 0.3) !important;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -1px;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, $gold-primary, transparent);
+  }
+}
+
+.fs-2 {
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 0.5rem;
+
+  &.text-success {
+    color: $success-color !important;
+    text-shadow: 0 2px 4px rgba($success-color, 0.3);
+  }
+
+  &.text-warning {
+    color: $warning-color !important;
+    text-shadow: 0 2px 4px rgba($warning-color, 0.3);
+  }
+
+  &.text-primary {
+    color: $primary-color !important;
+    text-shadow: 0 2px 4px rgba($primary-color, 0.3);
+  }
+}
+
+.text-uppercase.text-muted.small {
+  color: rgba($text-light, 0.8) !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Sección de calificación */
+.display-3 {
+  font-size: 4rem !important;
+  font-weight: 800 !important;
+  color: $gold-primary !important;
+  text-shadow: 0 3px 6px rgba($gold-primary, 0.4);
+  margin-bottom: 1rem !important;
+  background: linear-gradient(to right, $gold-primary, $gold-secondary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Estrellas de calificación doradas */
+.fas.fa-star {
+  color: $gold-primary !important;
+  text-shadow: 0 1px 3px rgba($gold-primary, 0.4);
+  animation: twinkle 2s ease-in-out infinite;
+  animation-delay: calc(var(--star-index, 0) * 0.2s);
+}
+
+.text-muted {
+  color: rgba($text-light, 0.7) !important;
+}
+
+.fs-4 {
+  color: $gold-primary !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 2px rgba($gold-primary, 0.3);
+}
+
+/* Progreso personalizado estilo lujo */
+c-progress {
+  .progress {
+    height: 8px !important;
+    border-radius: 10px !important;
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba($gold-primary, 0.2);
+
+    .progress-bar {
+      border-radius: 10px !important;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: shine 2s ease-in-out infinite;
+      }
+    }
+  }
+
+  &[color="success"] .progress-bar {
+    background: linear-gradient(90deg, $success-color, lighten($success-color, 10%)) !important;
+  }
+
+  &[color="warning"] .progress-bar {
+    background: linear-gradient(90deg, $warning-color, lighten($warning-color, 10%)) !important;
+  }
+
+  &[color="primary"] .progress-bar {
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 10%)) !important;
+  }
+}
+
+/* Botones de acciones rápidas estilo El Dorado */
+.btn {
+  border-radius: 8px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  iconify-icon {
+    font-size: 1.1rem;
+  }
+
+  &.btn-primary {
+    background: linear-gradient(135deg, $primary-color, lighten($primary-color, 10%)) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba($primary-color, 0.3);
+  }
+
+  &.btn-success {
+    background: linear-gradient(135deg, $success-color, lighten($success-color, 10%)) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba($success-color, 0.3);
+  }
+
+  &.btn-info {
+    background: linear-gradient(135deg, $info-color, lighten($info-color, 10%)) !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba($info-color, 0.3);
+  }
+}
+
+/* Iconos de Iconify con efectos especiales */
+iconify-icon {
+  vertical-align: middle;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &[icon*="dog"] {
+    color: $gold-primary !important;
+    animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  &[icon*="star"] {
+    color: $gold-primary !important;
+    text-shadow: 0 0 8px rgba($gold-primary, 0.5);
+  }
+
+  &[icon*="calendar"] {
+    color: $primary-color !important;
+  }
+
+  &[icon*="clock"] {
+    color: $warning-color !important;
+  }
+
+  &[icon*="account"] {
+    color: $info-color !important;
+  }
+
+  &[icon*="trending"] {
+    color: $success-color !important;
+  }
+}
+
+/* Perrito corriendo en el dashboard */
+.container-fluid::after {
+  content: '';
+  position: fixed;
+  bottom: 20px;
+  right: -100px;
+  width: 60px;
+  height: 60px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="40">🐕‍🦺</text></svg>') no-repeat center;
+  background-size: contain;
+  animation: run-across 15s linear infinite;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Gráficos con tema de lujo */
+.chart-container {
+  position: relative;
+  height: 300px;
+  background: rgba($dark-secondary, 0.6);
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1px solid rgba($gold-primary, 0.2);
+
+  canvas {
+    border-radius: 8px;
+  }
+}
+
+/* Estado de carga estilo casino/lujo */
+.loading-casino {
+  padding: 3rem 0;
+  text-align: center;
+
+  .spinner-gold {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+
+    .spinner-border {
+      width: 100%;
+      height: 100%;
+      border-width: 4px;
+      border-color: $gold-primary transparent $gold-primary transparent;
+    }
+
+    .spinner-dog {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+      background-size: contain;
+      animation: pulse-gold 1.5s ease-in-out infinite;
+    }
+  }
+
+  p {
+    color: $gold-primary;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1199.98px) {
+  .container-fluid {
+    padding: 0.75rem;
+  }
+
+  .bg-gradient-primary .card-body {
+    padding: 1.5rem;
+  }
+
+  .display-3 {
+    font-size: 3rem !important;
+  }
+
+  .gold-ornament {
+    width: 100px;
+    height: 100px;
+  }
+
+  .animal-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  c-widget-stat-a .card .widget-icon {
+    display: none;
+  }
+
+  .border-end {
+    border-right: none !important;
+    border-bottom: 2px solid rgba($gold-primary, 0.3) !important;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+
+    &::after {
+      display: none;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, $gold-primary, transparent);
+    }
+  }
+
+  .fs-2 {
+    font-size: 2rem !important;
+  }
+
+  .display-3 {
+    font-size: 2.5rem !important;
+  }
+
+  .animal-icon {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .container-fluid {
+    padding: 0.5rem;
+  }
+
+  .bg-gradient-primary .card-body {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .bg-gradient-primary .d-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .bg-gradient-primary .text-end {
+    text-align: center !important;
+  }
+
+  .d-flex.gap-3 {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+
+  .badge {
+    display: inline-block;
+    margin: 0.25rem;
+  }
+
+  c-card .card-header {
+    padding: 1rem !important;
+    text-align: center;
+  }
+
+  c-card .card-body {
+    padding: 1rem !important;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .fs-2 {
+    font-size: 1.5rem !important;
+  }
+
+  .display-3 {
+    font-size: 2rem !important;
+  }
+
+  .gold-ornament {
+    width: 80px;
+    height: 80px;
+  }
+
+  .animal-icon {
+    width: 35px;
+    height: 35px;
+    opacity: 0.2;
+  }
+
+  .container-fluid::after {
+    width: 40px;
+    height: 40px;
+    animation-duration: 20s;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container-fluid {
+    padding: 0.25rem;
+  }
+
+  c-widget-stat-a .card .card-body {
+    padding: 1rem !important;
+  }
+
+  .bg-gradient-primary,
+  c-card .card {
+    border-radius: 10px !important;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem;
+  }
+
+  .gold-ornament,
+  .animal-icon {
+    display: none;
+  }
+}
+
+/* Elementos decorativos adicionales en el HTML */
+.luxury-bg-elements {
+  .gold-ornament.top-left,
+  .gold-ornament.top-right,
+  .gold-ornament.bottom-left,
+  .gold-ornament.bottom-right,
+  .animal-icon.dog-icon,
+  .animal-icon.cat-icon,
+  .animal-icon.paw-icon,
+  .animal-icon.bird-icon {
+    // Los estilos ya están definidos arriba
+  }
+}

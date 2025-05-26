@@ -39,7 +39,7 @@ interface ThermalCamera {
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header>
-        <strong>SmartMusa</strong> <small>team</small>
+        <strong>SmartpX</strong> <small>team</small>
       </c-card-header>
       <c-card-body>
       <div class="container-fluid">
@@ -111,7 +111,7 @@ interface ThermalCamera {
       </c-card-body>
     </c-card>
   </c-col>
-   
+
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

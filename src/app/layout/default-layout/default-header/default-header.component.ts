@@ -28,7 +28,8 @@ import { IconDirective } from '@coreui/icons-angular';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { delay, filter, map, tap } from 'rxjs/operators';
 import { LanguageSwitcherComponent } from '../../../shared/language-switcher/language-switcher.component';
-
+import { AuthService } from '../../../SessionManagement/login/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
@@ -68,6 +69,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
   readonly #colorModeService = inject(ColorModeService);
   readonly colorMode = this.#colorModeService.colorMode;
   readonly #destroyRef: DestroyRef = inject(DestroyRef);
+  authService = inject(AuthService);
 
   readonly colorModes = [
     { name: 'light', text: 'Light', icon: 'cilSun' },
@@ -80,8 +82,11 @@ export class DefaultHeaderComponent extends HeaderComponent {
     return this.colorModes.find(mode => mode.name === currentMode)?.icon ?? 'cilSun';
   });
 
+  router: Router;
+
   constructor() {
     super();
+    this.router = inject(Router);
     this.#colorModeService.localStorageItemName.set('coreui-free-angular-admin-template-theme-default');
     this.#colorModeService.eventName.set('ColorSchemeChange');
 
@@ -174,4 +179,9 @@ export class DefaultHeaderComponent extends HeaderComponent {
     { id: 3, title: 'Add new layouts', value: 75, color: 'info' },
     { id: 4, title: 'Angular Version', value: 100, color: 'success' }
   ];
+
+  logout(): void {
+    this.authService.logout();  // Llama al servicio
+    this.router.navigate(['/login']); // Redirige al login
+  }
 }

@@ -1,0 +1,1956 @@
+/* Variables de estilo El Dorado para Smart Px */
+$gold-primary: #FFD700;
+$gold-secondary: #D4AF37;
+$gold-dark: #996515;
+$dark-primary: rgb(33, 37, 41);
+$dark-secondary: #243344;
+$luxury-bg: #1a1a1a;
+$card-bg: #2a2a2a;
+$text-light: #f5f5f5;
+
+/* Colores para growth hacking */
+$success-green: #10B981;
+$urgency-red: #EF4444;
+$social-google: #4285F4;
+$social-facebook: #1877F2;
+$vip-purple: #8B5CF6;
+$vip-blue: #4169E1;
+$jackpot-purple: #9932CC;
+$reward-orange: #FF8C00;
+$win-green: #32CD32;
+
+/* Social Proof Bar */
+.social-proof-bar {
+  background: linear-gradient(90deg, rgba($gold-primary, 0.1), rgba($vip-purple, 0.1));
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid rgba($gold-primary, 0.3);
+
+  .live-counter {
+    display: flex;
+    align-items: center;
+    color: $success-green;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+
+    .counter-dot {
+      width: 8px;
+      height: 8px;
+      background: $success-green;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse-live 2s infinite;
+    }
+  }
+
+  .urgency-text {
+    color: $urgency-red;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-align: center;
+    animation: urgency-blink 3s infinite;
+  }
+}
+
+@keyframes pulse-live {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba($success-green, 0.7);
+  }
+  50% {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 10px rgba($success-green, 0);
+  }
+}
+
+@keyframes urgency-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Registro Social */
+.social-register {
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+
+    &.google-btn {
+      background: $social-google;
+      color: white;
+      box-shadow: 0 4px 15px rgba($social-google, 0.3);
+
+      &:hover {
+        background: darken($social-google, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($social-google, 0.4);
+      }
+    }
+
+    &.facebook-btn {
+      background: $social-facebook;
+      color: white;
+      box-shadow: 0 4px 15px rgba($social-facebook, 0.3);
+
+      &:hover {
+        background: darken($social-facebook, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba($social-facebook, 0.4);
+      }
+    }
+
+    .social-icon {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    .instant-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: $success-green;
+      color: white;
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: bold;
+      animation: badge-pulse 2s infinite;
+    }
+  }
+
+  .divider {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: rgba($gold-primary, 0.3);
+    }
+
+    span {
+      background: $card-bg;
+      padding: 0 15px;
+      color: rgba($text-light, 0.7);
+      font-size: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Trust signals minimalistas */
+.trust-minimal {
+  display: flex;
+  justify-content: space-around;
+  background: rgba($success-green, 0.1);
+  border: 1px solid rgba($success-green, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.75rem;
+  color: $success-green;
+  font-weight: 600;
+  text-align: center;
+
+  span {
+    flex: 1;
+  }
+}
+
+/* Simplificar role options */
+.role-selector {
+  .role-title {
+    text-align: center;
+    color: $gold-primary;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .role-options {
+    display: flex;
+    gap: 10px;
+
+    .role-option {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba($luxury-bg, 0.5);
+      border: 2px solid rgba($gold-primary, 0.2);
+      border-radius: 10px;
+      padding: 15px 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      text-align: center;
+
+      &:hover {
+        border-color: rgba($gold-primary, 0.5);
+        background: rgba($gold-primary, 0.1);
+        transform: translateY(-2px);
+      }
+
+      &.selected {
+        border-color: $gold-primary;
+        background: rgba($gold-primary, 0.15);
+        box-shadow: 0 0 15px rgba($gold-primary, 0.3);
+
+        .role-icon {
+          animation: role-selected 0.5s ease;
+        }
+      }
+
+      .role-icon {
+        font-size: 2rem;
+        margin-bottom: 5px;
+        transition: all 0.3s ease;
+      }
+
+      .role-text {
+        color: $text-light;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      .role-check {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: $success-green;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        animation: check-appear 0.3s ease;
+      }
+    }
+  }
+}
+
+@keyframes role-selected {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes check-appear {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Botón mega registro */
+.mega-register-btn {
+  background: linear-gradient(135deg, $gold-primary, $vip-purple);
+  border: none;
+  border-radius: 12px;
+  padding: 18px 25px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba($gold-primary, 0.4);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s ease;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba($gold-primary, 0.6);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .btn-text {
+      font-size: 1rem;
+    }
+
+    .loading-paws {
+      .paw-loader {
+        width: 20px;
+        height: 20px;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFFFFF" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+        background-repeat: no-repeat;
+        background-size: contain;
+        animation: spin 1s linear infinite;
+      }
+    }
+  }
+
+  .btn-bonus {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: normal;
+  }
+}
+
+/* Beneficios rápidos */
+.benefits-quick {
+  display: flex;
+  justify-content: space-around;
+  background: rgba($luxury-bg, 0.3);
+  border-radius: 8px;
+  padding: 12px 8px;
+
+  .benefit-quick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: $text-light;
+    font-size: 0.75rem;
+
+    .benefit-icon {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+/* Trust signals */
+.trust-signals {
+  display: flex;
+  justify-content: space-around;
+  background: rgba($success-green, 0.1);
+  border: 1px solid rgba($success-green, 0.3);
+  border-radius: 8px;
+  padding: 10px 8px;
+
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: $success-green;
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    .trust-icon {
+      font-size: 1rem;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+/* Feedback de contraseña */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba($dark-primary, 0.8);
+  border-radius: 15px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+
+  .strength-dots {
+    display: flex;
+    gap: 3px;
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+
+      &.active {
+        background: $success-green;
+        box-shadow: 0 0 5px rgba($success-green, 0.5);
+      }
+    }
+  }
+
+  .strength-text {
+    font-weight: bold;
+
+    &.weak {
+      color: $urgency-red;
+    }
+
+    &.good {
+      color: orange;
+    }
+
+    &.strong {
+      color: $success-green;
+    }
+
+    &.very-weak {
+      color: lighten($urgency-red, 20%);
+    }
+  }
+}
+
+.error-check {
+  background: rgba($urgency-red, 0.8);
+  color: white;
+  border-radius: 15px;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  animation: error-shake 0.5s ease;
+}
+
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.password-toggle {
+  cursor: pointer;
+  background: rgba($gold-primary, 0.15);
+  border: 1px solid rgba($gold-primary, 0.25);
+  color: $gold-primary;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+
+  &:hover {
+    background: rgba($gold-primary, 0.25);
+  }
+}
+
+@keyframes success-bounce {
+  0% {
+    transform: scale(0) translateY(-10px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Herencia de estilos base del login */
+.smartpx-el-dorado {
+  background: linear-gradient(135deg, $dark-primary 0%, $luxury-bg 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 0;
+  min-height: 100vh;
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+  background-size: contain;
+  opacity: 0.3;
+  animation: float-particle 15s infinite linear;
+
+  &.particle-1 {
+    top: 20%;
+    left: 10%;
+    animation-duration: 18s;
+    animation-delay: 0s;
+  }
+
+  &.particle-2 {
+    top: 40%;
+    left: 70%;
+    animation-duration: 25s;
+    animation-delay: 2s;
+  }
+
+  &.particle-3 {
+    top: 70%;
+    left: 20%;
+    animation-duration: 22s;
+    animation-delay: 4s;
+  }
+
+  &.particle-4 {
+    top: 10%;
+    left: 40%;
+    animation-duration: 20s;
+    animation-delay: 6s;
+  }
+
+  &.particle-5 {
+    top: 60%;
+    left: 80%;
+    animation-duration: 17s;
+    animation-delay: 8s;
+  }
+
+  &.particle-6 {
+    top: 80%;
+    left: 50%;
+    animation-duration: 19s;
+    animation-delay: 10s;
+  }
+}
+
+.emotion-dog-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  transition: all 0.5s ease;
+
+  .emotion-dog {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+  }
+
+  &.excited .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    animation: jump-excited 0.5s infinite;
+  }
+
+  &.happy .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    animation: tail-wag 0.8s infinite;
+  }
+
+  &.sad .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+    animation: sad-shake 1.5s infinite;
+  }
+}
+
+.luxury-register-card {
+  background: $card-bg;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $gold-primary, $vip-purple);
+    opacity: 1;
+  }
+
+  .gold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba($gold-primary, 0.05), rgba($vip-purple, 0.1));
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 2;
+    background: rgba($dark-secondary, 0.7);
+  }
+}
+
+.dog-speech-card {
+  display: flex;
+  align-items: center;
+  background: rgba($luxury-bg, 0.7);
+  border-radius: 10px;
+  padding: 12px;
+  border-left: 4px solid $gold-primary;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  &.excited {
+    animation: pulse-border 1.5s infinite;
+  }
+
+  .dog-avatar-small {
+    min-width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &.excited {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+      animation: bounce-small 0.5s infinite;
+    }
+
+    &.happy {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+      animation: swing 1s infinite;
+    }
+
+    &.sad {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+    }
+  }
+
+  .speech-content {
+    flex: 1;
+    color: $text-light;
+
+    p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+
+  .sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      rgba($gold-primary, 0) 0%,
+      rgba($gold-primary, 0.1) 25%,
+      rgba($gold-primary, 0.2) 50%,
+      rgba($gold-primary, 0.1) 75%,
+      rgba($gold-primary, 0) 100%);
+    animation: sparkle-slide 1.5s ease-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+}
+
+.luxury-input {
+  position: relative;
+
+  .gold-input-icon {
+    background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+    color: $dark-primary;
+    border: none;
+    font-weight: bold;
+    min-width: 45px;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba($gold-primary, 0.25);
+    color: $text-light;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+
+    &::placeholder {
+      color: rgba($text-light, 0.5);
+    }
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: $gold-primary;
+      box-shadow: 0 0 0 3px rgba($gold-primary, 0.25);
+      color: $text-light;
+    }
+  }
+}
+
+.gold-text {
+  color: $gold-primary;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-luxury-secondary {
+  color: rgba($text-light, 0.7);
+}
+
+.gold-error {
+  color: lighten(red, 20%);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border-left: 3px solid lighten(red, 20%);
+  display: flex;
+  align-items: center;
+
+  .dog-bark-animation {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FF6666" d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H320V96h32v-8c0-13.255 10.745-24 24-24h16c13.255 0 24 10.745 24 24v8h24v-4c0-11.046 8.954-20 20-20h12c11.046 0 20 8.954 20 20v20h4c13.255 0 24 10.745 24 24v17z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: bark 0.5s infinite;
+  }
+}
+
+.gold-link {
+  color: $gold-primary !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: white !important;
+    text-decoration: underline;
+  }
+}
+
+.dog-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 8px rgba($gold-primary, 0.6));
+  transition: all 0.3s ease;
+
+  &.dog-icon-1 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23FFD700" d="M298.06,224,448,277.55V496a16,16,0,0,1-16,16H368a16,16,0,0,1-16-16V384H192V496a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16V282.09C58.84,268.84,32,233.66,32,192a32,32,0,0,1,64,0,32.06,32.06,0,0,0,32,32ZM544,112v32a64,64,0,0,1-64,64H448v35.58L320,197.87V48c0-14.25,17.22-21.39,27.31-11.31L374.59,64h53.63c10.91,0,23.75,7.92,28.62,17.69L464,96h64A16,16,0,0,1,544,112Zm-112,0a16,16,0,1,0-16,16A16,16,0,0,0,432,112Z"/></svg>');
+    top: 15%;
+    left: 5%;
+
+    &.animate {
+      opacity: 0.8;
+      animation: float-dog 4s ease-in-out infinite;
+    }
+  }
+
+  &.dog-icon-2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23FFD700" d="M528,96H464l-7.16-14.31A32,32,0,0,0,428.53,64H374.59L347.3,36.69A16,16,0,0,0,336,32c-6.5,0-16,3.5-16,16V132.7c-.6-.21-1.21-.37-1.82-.56l-49.7-14.2C221.8,100.92,156,118.4,114,173.33L54.76,256,42.23,280H16A16,16,0,0,0,0,296v16a16,16,0,0,0,16,16H54.78l24.17,50c15.75,32.64,50,4.22,50-18.95a33.08,33.08,0,0,0-5.26-18.36L100.63,304h155.7L141.94,407.89a32.07,32.07,0,0,0-6.94,19.82C135,463.3,177.7,480,202.22,480a95.85,95.85,0,0,0,74.21-35L384,308.89V496a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V308.89l12.8-12.8,7.74,15.48A32,32,0,0,0,496,328h64a16,16,0,0,0,16-16V112A16,16,0,0,0,528,96ZM432,128a16,16,0,1,1,16-16A16,16,0,0,1,432,128Z"/></svg>');
+    top: 60%;
+    right: 10%;
+
+    &.animate {
+      opacity: 0.8;
+      animation: sparkle-rotate 3s ease-in-out infinite;
+    }
+  }
+
+  &.dog-icon-3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M496 192h-48l-4.9-9.77c-8.8-17.6-26.9-28.8-46.9-28.8h-87.9c-6.3-1.7-10.3-2.9-10.3-2.9L240.9 144H176c-15.3 0-29.5 8.3-36.5 21.8-2.5 4.8-4.1 9.8-4.9 14.6l-12.8 85.3H96.1c-19 0-35.5 9.7-45.1 24.5L.64 368h.37c0 25.37 18.6 45.9 43.7 45.9 19.6 0 36.8-12.5 42.8-31l6.2-21.3h29.3l-13.8 97c-.3 3-.5 6-.5 8.9 0 23.4 16.8 42.9 38.9 42.9 18.8 0 32-11.7 37-28.8l59.5-191h30.9l-22.1 88.2c-4.5 18.2.8 37.3 14.1 50.6l20.8 20.8c6.7 6.7 15.6 10.3 25.2 10.3h6.4c9.5 0 18.5-3.7 25.2-10.4l11.5-11.4L321 424.1c3.5 1.9 7.4 2.9 11.7 2.9 6.8 0 13-2.9 18.4-8.2l61-61c9.9-9.9 10.9-24.6 3.7-35.6l-14.5-22h39.6L493.3 380c5 16.4 20.3 28 37.7 28 22.2 0 40.1-18 40.1-40.2 0-4.5-.8-10.6-2.9-14.8l-49.5-105c-8.3-17.7-26-29.7-45.5-29.7H432l16-32h48c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/></svg>');
+    bottom: 15%;
+    left: 15%;
+
+    &.animate {
+      opacity: 0.8;
+      animation: run-happy 2s ease-in-out infinite;
+    }
+  }
+}
+
+/* Animaciones */
+@keyframes float-particle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20vh) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40vh) rotate(180deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-60vh) rotate(270deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes float-dog {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+  50% { transform: translateY(-5px) rotate(-5deg) scale(1); }
+  75% { transform: translateY(-10px) rotate(3deg) scale(1.02); }
+}
+
+@keyframes sparkle-rotate {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+}
+
+@keyframes run-happy {
+  0% { transform: translateX(0) scaleX(1); }
+  25% { transform: translateX(15px) scaleX(1); }
+  50% { transform: translateX(30px) scaleX(1); }
+  75% { transform: translateX(15px) scaleX(1); }
+  100% { transform: translateX(0) scaleX(1); }
+}
+
+@keyframes jump-excited {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+@keyframes tail-wag {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes sad-shake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes sparkle-slide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-left-color: $gold-primary; }
+  50% { border-left-color: $vip-purple; }
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes bounce-small {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes bark {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 767.98px) {
+  .smartpx-el-dorado {
+    padding: 0.5rem 0;
+  }
+
+  .social-proof-bar {
+    padding: 8px;
+
+    .live-counter {
+      font-size: 0.75rem;
+    }
+
+    .urgency-text {
+      font-size: 0.7rem;
+    }
+  }
+
+  .role-options {
+    flex-direction: column;
+    gap: 8px;
+
+    .role-option {
+      padding: 12px;
+    }
+  }
+
+  .mega-register-btn {
+    padding: 15px 20px;
+    font-size: 0.9rem;
+
+    .btn-content .btn-text {
+      font-size: 0.9rem;
+    }
+  }
+
+  .benefits-quick, .trust-signals {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+
+    .benefit-quick, .trust-item {
+      flex-direction: row;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+
+  .emotion-dog-container {
+    width: 70px;
+    height: 70px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .dog-icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+  }
+}
+
+/* Estructura principal - heredada del login */
+.smartpx-el-dorado {
+  background: linear-gradient(135deg, $dark-primary 0%, $luxury-bg 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 0;
+  min-height: 100vh;
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Partículas flotantes - mismo estilo del login */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224z"/></svg>');
+  background-size: contain;
+  opacity: 0.3;
+  animation: float-particle 15s infinite linear;
+
+  &.particle-1 {
+    top: 20%;
+    left: 10%;
+    animation-duration: 18s;
+    animation-delay: 0s;
+  }
+
+  &.particle-2 {
+    top: 40%;
+    left: 70%;
+    animation-duration: 25s;
+    animation-delay: 2s;
+  }
+
+  &.particle-3 {
+    top: 70%;
+    left: 20%;
+    animation-duration: 22s;
+    animation-delay: 4s;
+  }
+
+  &.particle-4 {
+    top: 10%;
+    left: 40%;
+    animation-duration: 20s;
+    animation-delay: 6s;
+  }
+
+  &.particle-5 {
+    top: 60%;
+    left: 80%;
+    animation-duration: 17s;
+    animation-delay: 8s;
+  }
+
+  &.particle-6 {
+    top: 80%;
+    left: 50%;
+    animation-duration: 19s;
+    animation-delay: 10s;
+  }
+}
+
+/* Perro con emociones - mismo estilo del login */
+.emotion-dog-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+  transition: all 0.5s ease;
+
+  .emotion-dog {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.3s ease;
+  }
+
+  &.sleeping .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm0 128c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48z"/></svg>');
+    opacity: 0.6;
+    filter: grayscale(30%);
+    transform: scale(0.9) rotate(10deg);
+  }
+
+  &.happy .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    animation: tail-wag 0.8s infinite;
+  }
+
+  &.sad .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-64-16c12.42 0 22.63-10.84 31.25-21.41C219.71 191.73 222.09 192 224 192c17.67 0 32-14.33 32-32s-14.33-32-32-32c-4.54 0-8.86.99-12.78 2.7C201.75 111.04 181.55 96 160 96c-35.35 0-64 28.65-64 64 0 32.95 24.96 59.96 57.02 63.56C155.89 219.82 159.26 208 192 208zm128 0c32.74 0 36.11 11.82 38.98 15.56C391.04 219.96 416 192.95 416 160c0-35.35-28.65-64-64-64-21.55 0-41.75 15.04-51.22 34.7-3.92-1.71-8.24-2.7-12.78-2.7-17.67 0-32 14.33-32 32s14.33 32 32 32c1.91 0 4.29-.27 10.75-5.39C307.37 197.16 317.58 208 330 208z"/></svg>');
+    animation: sad-shake 1.5s infinite;
+  }
+
+  &.excited .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    animation: jump-excited 0.5s infinite;
+  }
+
+  &.surprised .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm16 112c0 8.84-7.16 16-16 16s-16-7.16-16-16 7.16-16 16-16 16 7.16 16 16zm-128-64c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm192-16c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm64 16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    animation: shake-surprised 0.3s 2;
+  }
+
+  &.confused .emotion-dog {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm96 0c0-8.84 7.16-16 16-16s16 7.16 16 16-7.16 16-16 16-16-7.16-16-16z"/></svg>');
+    animation: head-tilt 1.5s infinite;
+  }
+}
+
+/* Tarjeta de registro */
+.luxury-register-card {
+  background: $card-bg;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $gold-primary, $vip-blue);
+    opacity: 1;
+  }
+
+  .gold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba($gold-primary, 0.05), rgba($vip-blue, 0.1));
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 2;
+    background: rgba($dark-secondary, 0.7);
+  }
+}
+
+/* Barra de progreso del registro */
+.registration-progress {
+  background: rgba($luxury-bg, 0.5);
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid rgba($gold-primary, 0.3);
+
+  .progress-label {
+    font-size: 0.9rem;
+    color: $gold-primary;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .progress-bar-container {
+    position: relative;
+    background: rgba($dark-primary, 0.7);
+    border-radius: 20px;
+    height: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, $gold-primary, $vip-blue);
+      border-radius: 20px;
+      transition: width 0.5s ease;
+      box-shadow: 0 0 10px rgba($gold-primary, 0.5);
+    }
+
+    .progress-paws {
+      position: absolute;
+      top: -15px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .progress-paw {
+        font-size: 1.2rem;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+        filter: grayscale(100%);
+
+        &.paw-completed {
+          opacity: 1;
+          filter: none;
+          animation: bounce-paw 0.5s ease;
+        }
+
+        &.jackpot-paw.paw-completed {
+          animation: jackpot-star 1s infinite;
+        }
+      }
+    }
+  }
+
+  .progress-text {
+    text-align: center;
+    color: $text-light;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+@keyframes bounce-paw {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.3); }
+}
+
+@keyframes jackpot-star {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.3) rotate(180deg); }
+}
+
+/* Notificación de bonus */
+.bonus-notification {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, $vip-blue, $jackpot-purple);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 15px rgba($vip-blue, 0.5);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%);
+    animation: shine 2s infinite;
+  }
+
+  .bonus-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+    animation: grow-shrink 1s infinite;
+  }
+
+  .bonus-text {
+    color: white;
+
+    p {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    small {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+  }
+}
+
+/* Cartel de perro en la tarjeta - mismo estilo del login */
+.dog-speech-card {
+  display: flex;
+  align-items: center;
+  background: rgba($luxury-bg, 0.7);
+  border-radius: 10px;
+  padding: 12px;
+  border-left: 4px solid $gold-primary;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  &.excited {
+    animation: pulse-border 1.5s infinite;
+  }
+
+  &.happy {
+    border-left-color: $gold-secondary;
+  }
+
+  &.sad {
+    border-left-color: lighten(red, 20%);
+  }
+
+  .dog-avatar-small {
+    min-width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &.sleeping {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm0 128c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48z"/></svg>');
+    }
+
+    &.happy {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+      animation: swing 1s infinite;
+    }
+
+    &.excited {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-32-16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm128 0c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+      animation: bounce-small 0.5s infinite;
+    }
+
+    &.sad {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23D2B48C" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-64-16c12.42 0 22.63-10.84 31.25-21.41C219.71 191.73 222.09 192 224 192c17.67 0 32-14.33 32-32s-14.33-32-32-32c-4.54 0-8.86.99-12.78 2.7C201.75 111.04 181.55 96 160 96c-35.35 0-64 28.65-64 64 0 32.95 24.96 59.96 57.02 63.56C155.89 219.82 159.26 208 192 208zm128 0c32.74 0 36.11 11.82 38.98 15.56C391.04 219.96 416 192.95 416 160c0-35.35-28.65-64-64-64-21.55 0-41.75 15.04-51.22 34.7-3.92-1.71-8.24-2.7-12.78-2.7-17.67 0-32 14.33-32 32s14.33 32 32 32c1.91 0 4.29-.27 10.75-5.39C307.37 197.16 317.58 208 330 208z"/></svg>');
+    }
+
+    &.surprised {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm16 112c0 8.84-7.16 16-16 16s-16-7.16-16-16 7.16-16 16-16 16 7.16 16 16zm-128-64c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32zm192-16c-8.84 0-16-7.16-16-16s7.16-16 16-16 16 7.16 16 16-7.16 16-16 16zm64 16c0-17.67-14.33-32-32-32s-32 14.33-32 32 14.33 32 32 32 32-14.33 32-32z"/></svg>');
+    }
+  }
+
+  .speech-content {
+    flex: 1;
+    color: $text-light;
+
+    p {
+      margin: 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+
+  .sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      rgba($gold-primary, 0) 0%,
+      rgba($gold-primary, 0.1) 25%,
+      rgba($gold-primary, 0.2) 50%,
+      rgba($gold-primary, 0.1) 75%,
+      rgba($gold-primary, 0) 100%);
+    animation: sparkle-slide 1.5s ease-out infinite;
+    pointer-events: none;
+    z-index: 3;
+  }
+}
+
+/* Campo específico del rol desbloqueado */
+.role-specific-container {
+  animation: slideInDown 0.5s ease-out;
+
+  .role-unlock-animation {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, $reward-orange, $gold-primary);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: white;
+    font-weight: 600;
+    animation: glow-pulse 2s infinite;
+
+    .unlock-icon {
+      font-size: 1.2rem;
+      margin-right: 8px;
+      animation: unlock-wiggle 0.5s ease;
+    }
+
+    .unlock-text {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes unlock-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba($gold-primary, 0.3); }
+  50% { box-shadow: 0 0 20px rgba($gold-primary, 0.8); }
+}
+
+/* Sección de beneficios */
+.benefits-section {
+  background: rgba($card-bg, 0.5);
+  border-radius: 10px;
+  padding: 15px;
+  border: 1px solid rgba($gold-primary, 0.2);
+
+  .benefits-title {
+    text-align: center;
+    color: $gold-primary;
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      background: rgba($luxury-bg, 0.3);
+      border-radius: 6px;
+      padding: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba($gold-primary, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .benefit-icon {
+        font-size: 1.2rem;
+        margin-right: 8px;
+      }
+
+      .benefit-text {
+        color: $text-light;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Inputs estilizados - mismo estilo del login */
+.luxury-input {
+  position: relative;
+
+  .gold-input-icon {
+    background: linear-gradient(135deg, $gold-primary, $gold-secondary);
+    color: $dark-primary;
+    border: none;
+    font-weight: bold;
+    min-width: 45px;
+    justify-content: center;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba($gold-primary, 0.25);
+    color: $text-light;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: rgba($text-light, 0.5);
+    }
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: $gold-primary;
+      box-shadow: 0 0 0 3px rgba($gold-primary, 0.25);
+      color: $text-light;
+    }
+  }
+
+  .password-toggle {
+    cursor: pointer;
+    background: rgba($gold-primary, 0.15);
+    border: 1px solid rgba($gold-primary, 0.25);
+    color: $gold-primary;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba($gold-primary, 0.25);
+    }
+  }
+}
+
+/* Elementos visuales para calificación - mismo estilo del login */
+.input-feedback {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  z-index: 5;
+  animation: fadeInDown 0.3s ease-out;
+}
+
+.paw-rating {
+  display: flex;
+  align-items: center;
+  background: rgba($dark-primary, 0.8);
+  border-radius: 20px;
+  padding: 3px 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+  &.poor {
+    border: 1px solid rgba(red, 0.6);
+  }
+
+  &.fair {
+    border: 1px solid rgba(orange, 0.6);
+  }
+
+  &.average {
+    border: 1px solid rgba(yellow, 0.6);
+  }
+
+  &.good {
+    border: 1px solid rgba($gold-primary, 0.6);
+  }
+
+  &.excellent {
+    border: 1px solid rgba($win-green, 0.6);
+    animation: pulse-border 1.5s infinite;
+  }
+
+  .paw {
+    width: 15px;
+    height: 15px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23333333" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.43 3.64 85.22 34.58 93.36z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 2px;
+    filter: grayscale(100%) brightness(0.6);
+    transition: all 0.3s ease;
+
+    &.paw-active {
+      filter: none;
+
+      &:nth-child(1) { animation-delay: 0.1s; }
+      &:nth-child(2) { animation-delay: 0.2s; }
+      &:nth-child(3) { animation-delay: 0.3s; }
+      &:nth-child(4) { animation-delay: 0.4s; }
+      &:nth-child(5) { animation-delay: 0.5s; }
+    }
+  }
+
+  &.excellent .paw.paw-active {
+    animation: jump-pawprint 0.8s ease infinite;
+    filter: drop-shadow(0 0 3px $gold-primary);
+  }
+}
+
+/* Textos */
+.gold-text {
+  color: $gold-primary;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-luxury-secondary {
+  color: rgba($text-light, 0.7);
+}
+
+.gold-error {
+  color: lighten(red, 20%);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 3px solid lighten(red, 20%);
+  display: flex;
+  align-items: center;
+
+  .dog-bark-animation {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FF6666" d="M496 128v16a8 8 0 0 1-8 8h-24v12c0 6.627-5.373 12-12 12H320V96h32v-8c0-13.255 10.745-24 24-24h16c13.255 0 24 10.745 24 24v8h24v-4c0-11.046 8.954-20 20-20h12c11.046 0 20 8.954 20 20v20h4c13.255 0 24 10.745 24 24v17zm-446.293-51.525A51.317 51.317 0 0 0 0 125.856v282.294C0 446.865 29.078 464 64.623 464h82.234c23.767 0 45.128-6.222 60.652-16.519-14.212 1.399-28.374 2.598-42.033 3.593a172.862 172.862 0 0 1-46.517-.911c-.456 1.774-1.307 3.495-2.663 5.113a24.622 24.622 0 0 1-4.423 5.075c-5.607 7.074-16.386 9.761-26.744 4.284-15.183-8.07-20.308-25.726-11.362-39.368.333-.504.647-1.009.994-1.503-3.428-3.146-6.496-6.676-9.054-10.56C10.87 385.37 7.599 355.584 7.732 327.033c.11-24.032 2.019-44.49 5.241-60.773-7.862-3.191-12.658-8.796-11.624-24.022.386-5.707 2.012-12.426 3.585-19.564 2.399-10.903 5.129-23.27 6.55-28.716.396-1.509.754-2.098 1.028-2.339 2.635-2.32 3.47-3.069 11.663-1.017 12.696 3.324 40.22 4.284 72.122 4.284 38.534 0 73.363-2.611 80.546-4.284 8.954-2.095 12.791-.77 13.438.696 2.495 3.576 6.321 26.019 7.752 34.738.396 2.417.635 4.194.801 5.345.465 3.248.158 6.22-2.167 8.293.731 3.229 1.439 6.75 2.124 10.514 2.56 14.003 4.797 29.475 5.462 44.092.961 21.963-1.455 44.449-9.661 62.059-4.606 9.866-16.401 20.864-31.87 23.142-24.692 3.405-42.691 3.284-59.056 3.177-19.731-.13-37.055-.245-62.519 4.78z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: bark 0.5s infinite;
+  }
+}
+
+.gold-link {
+  color: $gold-primary !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: white !important;
+    text-decoration: underline;
+  }
+}
+
+/* Botones */
+.gold-button {
+  background: linear-gradient(135deg, $gold-primary, $vip-blue);
+  border: none;
+  color: white !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba($vip-blue, 0.3);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($vip-blue, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.pulse-button {
+    animation: button-pulse-vip 2s infinite;
+  }
+
+  .spinner-paw {
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFFFFF" d="M256 224c-79.41 0-192 122.76-192 200.25 0 34.9 26.81 55.75 71.74 55.75 48.84 0 81.09-25.08 120.26-25.08 39.51 0 71.85 25.08 120.26 25.08 44.93 0 71.74-20.85 71.74-55.75C448 346.76 335.41 224 256 224zm-147.28-12.61c-10.4-34.65-42.44-57.09-71.56-50.13-29.12 6.96-44.29 40.69-33.89 75.34 10.4 34.65 42.44 57.09 71.56 50.13 29.12-6.96 44.29-40.69 33.89-75.34zm84.72-20.78c30.94-8.14 46.42-49.94 34.58-93.36s-46.52-72.01-77.46-63.87-46.42 49.94-34.58 93.36c11.84 43.42 46.53 72.02 77.46 63.87zm281.39-29.34c-29.12-6.96-61.15 15.48-71.56 50.13-10.4 34.65 4.77 68.38 33.89 75.34 29.12 6.96 61.15-15.48 71.56-50.13 10.4-34.65-4.77-68.38-33.89-75.34zm-156.27 29.34c30.94 8.14 65.62-20.45 77.46-63.87 11.84-43.42-3.64-85.21-34.58-93.36s-65.62 20.45-77.46 63.87c-11.84 43.43 3.64 85.22 34.58 93.36z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes button-pulse-vip {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba($vip-blue, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba($vip-blue, 0.7);
+  }
+}
+
+/* Iconos de perros flotantes - mismo estilo del login */
+.dog-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 8px rgba($gold-primary, 0.6));
+  transition: all 0.3s ease;
+
+  &.dog-icon-1 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23FFD700" d="M298.06,224,448,277.55V496a16,16,0,0,1-16,16H368a16,16,0,0,1-16-16V384H192V496a16,16,0,0,1-16,16H112a16,16,0,0,1-16-16V282.09C58.84,268.84,32,233.66,32,192a32,32,0,0,1,64,0,32.06,32.06,0,0,0,32,32ZM544,112v32a64,64,0,0,1-64,64H448v35.58L320,197.87V48c0-14.25,17.22-21.39,27.31-11.31L374.59,64h53.63c10.91,0,23.75,7.92,28.62,17.69L464,96h64A16,16,0,0,1,544,112Zm-112,0a16,16,0,1,0-16,16A16,16,0,0,0,432,112Z"/></svg>');
+    top: 15%;
+    left: 5%;
+    opacity: 0.3;
+
+    &.animate {
+      opacity: 0.7;
+      animation: float-dog 4s ease-in-out infinite;
+    }
+  }
+
+  &.dog-icon-2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="%23FFD700" d="M528,96H464l-7.16-14.31A32,32,0,0,0,428.53,64H374.59L347.3,36.69A16,16,0,0,0,336,32c-6.5,0-16,3.5-16,16V132.7c-.6-.21-1.21-.37-1.82-.56l-49.7-14.2C221.8,100.92,156,118.4,114,173.33L54.76,256,42.23,280H16A16,16,0,0,0,0,296v16a16,16,0,0,0,16,16H54.78l24.17,50c15.75,32.64,50,4.22,50-18.95a33.08,33.08,0,0,0-5.26-18.36L100.63,304h155.7L141.94,407.89a32.07,32.07,0,0,0-6.94,19.82C135,463.3,177.7,480,202.22,480a95.85,95.85,0,0,0,74.21-35L384,308.89V496a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V308.89l12.8-12.8,7.74,15.48A32,32,0,0,0,496,328h64a16,16,0,0,0,16-16V112A16,16,0,0,0,528,96ZM432,128a16,16,0,1,1,16-16A16,16,0,0,1,432,128Z"/></svg>');
+    top: 60%;
+    right: 10%;
+    opacity: 0.3;
+
+    &.animate {
+      opacity: 0.7;
+      animation: float-dog 5s ease-in-out infinite;
+    }
+  }
+
+  &.dog-icon-3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M496 192h-48l-4.9-9.77c-8.8-17.6-26.9-28.8-46.9-28.8h-87.9c-6.3-1.7-10.3-2.9-10.3-2.9L240.9 144H176c-15.3 0-29.5 8.3-36.5 21.8-2.5 4.8-4.1 9.8-4.9 14.6l-12.8 85.3H96.1c-19 0-35.5 9.7-45.1 24.5L.64 368h.37c0 25.37 18.6 45.9 43.7 45.9 19.6 0 36.8-12.5 42.8-31l6.2-21.3h29.3l-13.8 97c-.3 3-.5 6-.5 8.9 0 23.4 16.8 42.9 38.9 42.9 18.8 0 32-11.7 37-28.8l59.5-191h30.9l-22.1 88.2c-4.5 18.2.8 37.3 14.1 50.6l20.8 20.8c6.7 6.7 15.6 10.3 25.2 10.3h6.4c9.5 0 18.5-3.7 25.2-10.4l11.5-11.4L321 424.1c3.5 1.9 7.4 2.9 11.7 2.9 6.8 0 13-2.9 18.4-8.2l61-61c9.9-9.9 10.9-24.6 3.7-35.6l-14.5-22h39.6L493.3 380c5 16.4 20.3 28 37.7 28 22.2 0 40.1-18 40.1-40.2 0-4.5-.8-10.6-2.9-14.8l-49.5-105c-8.3-17.7-26-29.7-45.5-29.7H432l16-32h48c8.8 0 16-7.2 16-16s-7.2-16-16-16z"/></svg>');
+    bottom: 15%;
+    left: 15%;
+    opacity: 0.3;
+
+    &.animate {
+      opacity: 0.7;
+      animation: run-dog 2s ease-in-out infinite;
+    }
+  }
+}
+
+/* Animaciones - mismas del login */
+@keyframes float-particle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20vh) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40vh) rotate(180deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translateY(-60vh) rotate(270deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes float-dog {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  25% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+  50% { transform: translateY(-5px) rotate(-5deg) scale(1); }
+  75% { transform: translateY(-10px) rotate(3deg) scale(1.02); }
+}
+
+@keyframes run-dog {
+  0% { transform: translateX(0) scaleX(1); }
+  25% { transform: translateX(20px) scaleX(1); }
+  50% { transform: translateX(40px) scaleX(1); }
+  75% { transform: translateX(60px) scaleX(1); }
+  100% { transform: translateX(80px) scaleX(1); }
+}
+
+@keyframes tail-wag {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes sad-shake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes jump-excited {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+@keyframes shake-surprised {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+@keyframes head-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes sparkle-slide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-left-color: $gold-primary; }
+  50% { border-left-color: $vip-blue; }
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+
+@keyframes bounce-small {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(50%); }
+}
+
+@keyframes grow-shrink {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes jump-pawprint {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.2); }
+}
+
+@keyframes bark {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .emotion-dog-container {
+    bottom: 10px;
+    left: 10px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .dog-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .smartpx-el-dorado {
+    padding: 1rem 0;
+  }
+
+  .luxury-register-card {
+    border-radius: 10px;
+  }
+
+  .gold-text {
+    font-size: 1.5rem;
+  }
+
+  .dog-icon {
+    opacity: 0.2;
+  }
+
+  .luxury-input .form-control {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .dog-speech-card {
+    padding: 8px;
+  }
+
+  .registration-progress {
+    padding: 10px;
+  }
+
+  .progress-paws .progress-paw {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dog-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .gold-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .emotion-dog-container {
+    width: 70px;
+    height: 70px;
+    bottom: 5px;
+    left: 5px;
+  }
+
+  .paw-rating {
+    padding: 2px 6px;
+
+    .paw {
+      width: 12px;
+      height: 12px;
+      margin: 0 1px;
+    }
+  }
+
+  .benefits-grid .benefit-item {
+    padding: 6px;
+
+    .benefit-text {
+      font-size: 0.75rem;
+    }
+  }
+}

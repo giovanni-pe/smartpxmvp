@@ -52,7 +52,7 @@ $text-light: #f5f5f5;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23D4AF37" d="M50 0 L100 50 L50 100 L0 50 Z" opacity="0.1"/></svg>');
   background-size: contain;
   background-repeat: no-repeat;
-  
+
   &.top-left { top: 20px; left: 20px; }
   &.top-right { top: 20px; right: 20px; transform: rotate(90deg); }
   &.bottom-left { bottom: 20px; left: 20px; transform: rotate(270deg); }
@@ -69,22 +69,22 @@ $text-light: #f5f5f5;
   z-index: 0;
   animation: float 8s ease-in-out infinite;
   filter: drop-shadow(0 0 5px rgba($gold-primary, 0.5));
-  
+
   &.dog-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm96-208c0-53-43-96-96-96s-96 43-96 96 43 96 96 96 96-43 96-96zm-96-64c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64z"/></svg>');
     animation-delay: 0s;
   }
-  
+
   &.cat-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm-32-208c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32zm96 0c0-17.7-14.3-32-32-32s-32 14.3-32 32 14.3 32 32 32 32-14.3 32-32z"/></svg>');
     animation-delay: 2s;
   }
-  
+
   &.paw-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208z"/></svg>');
     animation-delay: 4s;
   }
-  
+
   &.bird-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23FFD700" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 464c-114.7 0-208-93.3-208-208S141.3 48 256 48s208 93.3 208 208-93.3 208-208 208zm-80-208c0-44.1 35.9-80 80-80s80 35.9 80 80-35.9 80-80 80-80-35.9-80-80zm80-48c-26.5 0-48 21.5-48 48s21.5 48 48 48 48-21.5 48-48-21.5-48-48-48z"/></svg>');
     animation-delay: 6s;
@@ -97,7 +97,7 @@ $text-light: #f5f5f5;
   z-index: 1;
   margin-top: 1.5rem;
   margin-bottom: 3rem !important;
-  
+
   .gold-text {
     color: $gold-primary;
     font-weight: 700;
@@ -110,7 +110,7 @@ $text-light: #f5f5f5;
     background-clip: text;
     color: transparent;
     position: relative;
-    
+
     &::after {
       content: "";
       position: absolute;
@@ -123,7 +123,7 @@ $text-light: #f5f5f5;
       border-radius: 3px;
     }
   }
-  
+
   .title-ornament {
     display: block;
     width: 100px;
@@ -142,7 +142,7 @@ $text-light: #f5f5f5;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
   backdrop-filter: blur(5px);
   z-index: 1;
-  
+
   .luxury-input {
     .input-group-text {
       background: linear-gradient(135deg, $gold-primary, $gold-secondary);
@@ -150,12 +150,12 @@ $text-light: #f5f5f5;
       border: none;
       font-weight: bold;
     }
-    
+
     .form-control, .form-select {
       background-color: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba($gold-primary, 0.2);
       color: $text-light;
-      
+
       &:focus {
         background-color: rgba(255, 255, 255, 0.1);
         border-color: $gold-primary;
@@ -163,7 +163,7 @@ $text-light: #f5f5f5;
       }
     }
   }
-  
+
   .gold-button {
     background: linear-gradient(135deg, $gold-primary, $gold-secondary);
     border: none;
@@ -175,7 +175,7 @@ $text-light: #f5f5f5;
     overflow: hidden;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba($gold-primary, 0.3);
-    
+
     &::before {
       content: "";
       position: absolute;
@@ -186,16 +186,16 @@ $text-light: #f5f5f5;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: all 0.5s ease;
     }
-    
+
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba($gold-primary, 0.4);
-      
+
       &::before {
         left: 100%;
       }
     }
-    
+
     &:active {
       transform: translateY(0);
     }
@@ -212,27 +212,27 @@ $text-light: #f5f5f5;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;
-  
+
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba($gold-primary, 0.3);
-    
+
     .luxury-image-container img {
       transform: scale(1.05);
     }
-    
+
     .gold-overlay {
       opacity: 0.3;
     }
   }
-  
+
   .luxury-card-header {
     background: rgba($dark-secondary, 0.8);
     border-bottom: 1px solid rgba($gold-primary, 0.3);
     padding: 0.75rem 1.25rem;
     display: flex;
     justify-content: space-between;
-    
+
     .gold-badge {
       background: linear-gradient(135deg, $gold-primary, $gold-secondary);
       color: $dark-primary;
@@ -240,7 +240,7 @@ $text-light: #f5f5f5;
       border-radius: 20px;
       padding: 0.25rem 0.75rem;
     }
-    
+
     .silver-badge {
       background: linear-gradient(135deg, #c0c0c0, #e0e0e0);
       color: $dark-primary;
@@ -249,19 +249,19 @@ $text-light: #f5f5f5;
       padding: 0.25rem 0.75rem;
     }
   }
-  
+
   .luxury-image-container {
     height: 200px;
     overflow: hidden;
     position: relative;
-    
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: all 0.5s ease;
     }
-    
+
     .gold-overlay {
       position: absolute;
       top: 0;
@@ -273,32 +273,32 @@ $text-light: #f5f5f5;
       transition: all 0.3s ease;
     }
   }
-  
+
   .luxury-card-body {
     padding: 1.5rem;
     background: rgba($dark-secondary, 0.6);
-    
+
     .gold-text {
       color: $gold-primary;
       font-weight: 700;
       margin-bottom: 1rem;
     }
-    
+
     .divider-gold {
       height: 2px;
       background: linear-gradient(to right, transparent, $gold-primary, transparent);
       margin: 1rem 0;
     }
-    
+
     .gold-icon {
       color: $gold-primary;
     }
-    
+
     p {
       color: rgba($text-light, 0.8);
       margin-bottom: 1.5rem;
     }
-    
+
     .price-tag {
       background: rgba(0, 0, 0, 0.3);
       border-radius: 6px;
@@ -306,26 +306,26 @@ $text-light: #f5f5f5;
       display: inline-flex;
       align-items: center;
       border: 1px solid rgba($gold-primary, 0.3);
-      
+
       .currency {
         color: $gold-primary;
         font-weight: 700;
         margin-right: 2px;
       }
-      
+
       .amount {
         color: $gold-primary;
         font-weight: 700;
         font-size: 1.2rem;
       }
-      
+
       .per-hour {
         color: rgba($text-light, 0.6);
         font-size: 0.8rem;
         margin-left: 4px;
       }
     }
-    
+
     .gold-outline-button {
       border: 1px solid $gold-primary;
       color: $gold-primary;
@@ -334,7 +334,7 @@ $text-light: #f5f5f5;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      
+
       &::before {
         content: "";
         position: absolute;
@@ -345,10 +345,10 @@ $text-light: #f5f5f5;
         background: linear-gradient(90deg, transparent, rgba($gold-primary, 0.2), transparent);
         transition: all 0.5s ease;
       }
-      
+
       &:hover {
         background: rgba($gold-primary, 0.1);
-        
+
         &::before {
           left: 100%;
         }
@@ -360,20 +360,20 @@ $text-light: #f5f5f5;
 /* Estado de carga estilo casino */
 .loading-casino {
   padding: 3rem 0;
-  
+
   .spinner-gold {
     position: relative;
     width: 60px;
     height: 60px;
     margin: 0 auto;
-    
+
     .spinner-border {
       width: 100%;
       height: 100%;
       border-width: 4px;
       border-color: $gold-primary transparent $gold-primary transparent;
     }
-    
+
     .spinner-dog {
       position: absolute;
       top: 50%;
@@ -386,7 +386,7 @@ $text-light: #f5f5f5;
       animation: pulse-gold 1.5s ease-in-out infinite;
     }
   }
-  
+
   p {
     color: $gold-primary;
     font-weight: 600;
@@ -416,18 +416,18 @@ $text-light: #f5f5f5;
   align-items: center;
   border: 1px solid rgba($gold-primary, 0.3);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  
+
   .current-page {
     color: $gold-primary;
     font-weight: 700;
     font-size: 1.2rem;
   }
-  
+
   .separator {
     color: rgba($text-light, 0.5);
     margin: 0 0.5rem;
   }
-  
+
   .total-pages {
     color: rgba($text-light, 0.8);
     font-weight: 600;

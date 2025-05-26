@@ -1,16 +1,17 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `https://apiv2.smartpx.org/api/login`; // URL de la API para el inicio de sesión
+  private apiUrl = `${environment.apiBaseUrl}/login`; // URL de la API para el inicio de sesión
   private jwtHelper = new JwtHelperService();
   private userEmail: string | null = null;
   private userRole: string | null = null;
@@ -44,6 +45,7 @@ export class AuthService {
             this.userRole = (userData.roles && userData.roles.length > 0)
                             ? userData.roles[0].name
                             : null;
+                            console.log('User role: caragdo', this.userRole);
 
             // Guardamos los datos generales del usuario
             localStorage.setItem('userId', this.userId || '');

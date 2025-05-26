@@ -1,41 +1,9 @@
-<!-- Modal para crear la reserva -->
-<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="reservationModalLabel">Crear Reserva de Paseo</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div *ngIf="selectedWalker">
-          <h6><strong>Paseador Seleccionado:</strong> {{ selectedWalker.name }}</h6>
-          <div class="mb-3">
-            <label for="dogSelect" class="form-label">Selecciona tu perro:</label>
-            <select class="form-select" id="dogSelect" [(ngModel)]="selectedDog">
-              <option *ngFor="let dog of dogs" [ngValue]="dog.id">{{ dog.name }} - {{ dog.breed }}</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="reservationDate" class="form-label">Fecha de la Reserva:</label>
-            <input type="date" class="form-control" id="reservationDate" [(ngModel)]="reservationDate">
-          </div>
-          <div class="mb-3">
-            <label for="reservationTime" class="form-label">Hora de la Reserva:</label>
-            <input type="time" class="form-control" id="reservationTime" [(ngModel)]="reservationTime">
-          </div>
-        </div>
-        <div *ngIf="!selectedWalker">
-          <p>No se ha seleccionado un paseador.</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="makeReservation()">Reservar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- Componente Modal de Reserva -->
+<app-reservation-modal
+  [selectedWalker]="null"
+  (reservationCreated)="onReservationCreated($event)"
+  (modalClosed)="onModalClosed()">
+</app-reservation-modal>
 
 <div class="container py-4 walkers-el-dorado">
   <!-- Fondo de lujo con elementos decorativos -->
@@ -46,40 +14,16 @@
     <div class="gold-ornament bottom-right"></div>
 
     <!-- Iconos de animales animados -->
-   <div
-  *ngFor="let icon of floatingIcons"
-  class="animal-icon"
-  [ngClass]="icon.type + '-icon'"
-  [style.left]="icon.left"
-  [style.top]="icon.top"
-  [@float]>
-</div>
-<div
-  *ngFor="let icon of floatingIcons"
-  class="animal-icon"
-  [ngClass]="icon.type + '-icon'"
-  [style.left]="icon.left"
-  [style.top]="icon.top"
-  [@float]>
-</div>
-<div
-  *ngFor="let icon of floatingIcons"
-  class="animal-icon"
-  [ngClass]="icon.type + '-icon'"
-  [style.left]="icon.left"
-  [style.top]="icon.top"
-  [@float]>
-</div>
-<div
-  *ngFor="let icon of floatingIcons"
-  class="animal-icon"
-  [ngClass]="icon.type + '-icon'"
-  [style.left]="icon.left"
-  [style.top]="icon.top"
-  [@float]>
-</div>
-
-   </div>
+    @for (icon of floatingIcons; track $index) {
+      <div
+        class="animal-icon"
+        [ngClass]="icon.type + '-icon'"
+        [style.left]="icon.left"
+        [style.top]="icon.top"
+        [@float]>
+      </div>
+    }
+  </div>
 
   <h2 class="mb-4 text-center luxury-title">
     <span class="gold-text">🐾 Paseadores Premium</span>
@@ -122,66 +66,80 @@
   </div>
 
   <!-- CARGANDO - Estilo casino -->
-  <div *ngIf="isLoading" class="text-center loading-casino">
-    <div class="spinner-gold">
-      <div class="spinner-border text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
+  @if (isLoading) {
+    <div class="text-center loading-casino">
+      <div class="spinner-gold">
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner-dog"></div>
       </div>
-      <div class="spinner-dog"></div>
+      <p class="mt-3 gold-text">Cargando paseadores premium...</p>
     </div>
-    <p class="mt-3 gold-text">Cargando paseadores premium...</p>
-  </div>
+  }
 
   <!-- LISTA DE PASEADORES - Estilo cartas de casino -->
-  <div class="row" *ngIf="!isLoading">
-    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let walker of walkers()">
-      <div class="card luxury-card">
-        <div class="card-header luxury-card-header">
-          <span class="badge gold-badge">⭐ {{ walker.rating }}</span>
-          <span class="badge silver-badge">{{ walker.total_reviews }} reseñas</span>
-        </div>
-        <div class="luxury-image-container">
-          <img [src]="walker.photo_url || 'https://via.placeholder.com/400x300'" class="card-img-top" [alt]="walker.name">
-          <div class="gold-overlay"></div>
-        </div>
-        <div class="card-body luxury-card-body">
-          <h5 class="gold-text">{{ walker.name }}</h5>
-          <div class="divider-gold"></div>
-          <p><i class="fas fa-award me-2 gold-icon"></i>{{ walker.experience || 'Experiencia no especificada' }}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="price-tag">
-              <span class="currency">S/.</span>
-              <span class="amount">{{ 8 }}</span>
-
-              <span class="per-hour">/hora</span>
+  @if (!isLoading) {
+    <div class="row">
+      @for (walker of walkers(); track walker.id; let i = $index) {
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card luxury-card">
+            <div class="card-header luxury-card-header">
+              <span class="badge gold-badge">⭐ {{ walker.rating || 'N/A' }}</span>
+              <span class="badge silver-badge">{{ walker.total_reviews || 0 }} reseñas</span>
             </div>
-            <button class="btn btn-outline-light gold-outline-button">
-              <i class="fas fa-calendar-check me-2"></i>Reservar
-            </button>
+            <div class="luxury-image-container">
+              <img [src]="walker.photo_url || 'https://picsum.photos/seed/picsum/200/300'"
+                   class="card-img-top"
+                   [alt]="walker.name"
+                   (error)="onImageError($event)">
+              <div class="gold-overlay"></div>
+            </div>
+            <div class="card-body luxury-card-body">
+              <h5 class="gold-text">{{ walker.name }}</h5>
+              <div class="divider-gold"></div>
+              <p><i class="fas fa-award me-2 gold-icon"></i>{{ walker.experience || 'Experiencia no especificada' }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price-tag">
+                  <span class="currency">S/.</span>
+                  <span class="amount">{{ walkerPrices[i] || '20.00' }}</span>
+                  <span class="per-hour">/hora</span>
+                </div>
+                <button class="btn btn-outline-light gold-outline-button" (click)="openReservationModal(walker)">
+                  <i class="fas fa-calendar-check me-2"></i>Reservar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      } @empty {
+        <!-- SIN RESULTADOS - Estilo casino -->
+        <div class="alert luxury-alert text-center">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          No se encontraron paseadores con los filtros seleccionados.
+        </div>
+      }
     </div>
-  </div>
-
-  <!-- SIN RESULTADOS - Estilo casino -->
-  <div *ngIf="!isLoading && walkers().length === 0" class="alert luxury-alert text-center">
-    <i class="fas fa-exclamation-triangle me-2"></i>
-    No se encontraron paseadores con los filtros seleccionados.
-  </div>
+  }
 
   <!-- PAGINACIÓN - Estilo ruleta -->
-  <div class="d-flex justify-content-center align-items-center mt-5" *ngIf="totalPages > 1">
-    <button class="btn gold-outline-button me-3" [disabled]="filters.page === 1" (click)="onPageChange('prev')">
-      <i class="fas fa-chevron-left me-2"></i>Anterior
-    </button>
-    <div class="page-indicator">
-      <span class="current-page">{{ filters.page }}</span>
-      <span class="separator">/</span>
-      <span class="total-pages">{{ totalPages }}</span>
+  @if (totalPages > 1) {
+    <div class="d-flex justify-content-center align-items-center mt-5">
+      <button class="btn gold-outline-button me-3"
+              [disabled]="filters.page === 1"
+              (click)="onPageChange('prev')">
+        <i class="fas fa-chevron-left me-2"></i>Anterior
+      </button>
+      <div class="page-indicator">
+        <span class="current-page">{{ filters.page }}</span>
+        <span class="separator">/</span>
+        <span class="total-pages">{{ totalPages }}</span>
+      </div>
+      <button class="btn gold-button ms-3"
+              [disabled]="filters.page === totalPages"
+              (click)="onPageChange('next')">
+        Siguiente <i class="fas fa-chevron-right ms-2"></i>
+      </button>
     </div>
-    <button class="btn gold-button ms-3" [disabled]="filters.page === totalPages" (click)="onPageChange('next')">
-      Siguiente <i class="fas fa-chevron-right ms-2"></i>
-    </button>
-  </div>
+  }
 </div>

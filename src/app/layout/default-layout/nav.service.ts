@@ -17,6 +17,7 @@ export class NavService {
     this.loadUserFromStorage();
   }
 
+
   private loadUserFromStorage() {
     this.userRole = localStorage.getItem('userRole') || 'guest';
     console.log('User role loaded from storage:', this.userRole);
@@ -25,7 +26,7 @@ export class NavService {
   getNavItems(): ExtendedNavData[] {
     return [
       {
-        name:"SmartPx",
+        name: "SmartPx",
         url: '/walkers',
         iconComponent: { name: 'cil-sun' }, // Icono de velocidad para representar un dashboard
         badge: {
@@ -49,44 +50,73 @@ export class NavService {
         ],
         roles: ['admin', 'Professor', 'clients']
       },
-      {
-  name: "Mis Peludos",
-  url: '/base',
-  iconComponent: { name: 'cilDog' }, // Icono principal: perro
-  children: [
-    {
-      name: "Registrar",
-      url: '/register-dogs',
-      iconComponent: { name: 'cilAnimal' }, // Icono de agregar/registrar
-      roles: ['admin', 'client']
-    },
-    {
-      name: "Ver",
-      url: '/list-dogs',
-      iconComponent: { name: 'cilAnimal' }, // Icono de lista
-      roles: ['admin', 'client']
-    },
-  ],
-  roles: ['admin', 'client']
-},
+
 
       {
-        name: "Sensores",
-        url: '/buttons',
+        name: "Paseos",
+        url: '/base',
         iconComponent: { name: 'cilCursor' }, // Icono de cursor para representar interacción con sensores
         children: [
           {
-            name: "Gestionar Sensores",
-            url: 'sensors-management',
+            name: "ver",
+            url: 'client-reservations',
             icon: 'nav-icon-bullet',
-            roles: ['Client']
+            roles: ['client']
+          }, {
+            name: "Nuevo paseo",
+            url: 'walkers',
+            icon: 'nav-icon-bullet',
+            roles: ['client']
           },
         ],
-        roles: ['admin', 'clients']
+        roles: ['admin', 'client']
+      },
+
+
+      // Dog walker
+      {
+        name: "Pasear",
+        url: '/base',
+        iconComponent: { name: 'cilCursor' }, // Icono de cursor para representar interacción con sensores
+        children: [
+          {
+            name: "ver",
+            url: 'walker-reservations',
+            icon: 'nav-icon-bullet',
+            roles: ['dog-walker']
+          },
+        ],
+        roles: ['admin', 'dog_walker']
+      },
+      {
+        name: "ganancias",
+        url: '/walker-dashboard',
+        iconComponent: { name: 'cilDollar' }, // Icono de cursor para representar interacción con sensores
+        roles: ['admin', 'dog_walker']
+      },
+      {
+        name: "Mis Peludos",
+        url: '/base',
+        iconComponent: { name: 'cilDog' }, // Icono principal: perro
+        children: [
+          {
+            name: "Registrar",
+            url: '/register-dogs',
+            iconComponent: { name: 'cilAnimal' }, // Icono de agregar/registrar
+            roles: ['admin', 'client']
+          },
+          {
+            name: "Ver",
+            url: '/list-dogs',
+            iconComponent: { name: 'cilAnimal' }, // Icono de lista
+            roles: ['admin', 'client']
+          },
+        ],
+        roles: ['admin', 'client']
       },
 
       {
-        name:"Reportes",
+        name: "Reportes",
         url: 'reports',
         iconComponent: { name: 'cilChart' }, // Icono de gráfico para reportes
         badge: {
@@ -102,7 +132,7 @@ export class NavService {
         roles: ['User']
       },
       {
-        name:"Pedidos",
+        name: "Pedidos",
         url: '/login',
         iconComponent: { name: 'cilBasket' }, // Icono de canasta para representar pedidos
         children: [
@@ -136,10 +166,10 @@ export class NavService {
       },
       {
         name: "Info",
-        url: 'https://giovanni-pe.github.io/WebSmartMusa/services.html',
+        url: 'https://smartpx.org/',
         iconComponent: { name: 'cilDescription' }, // Icono de descripción para la sección de información
         attributes: { target: '_blank' },
-        roles: ['admin', 'Professor', 'User']
+        roles: ['admin', 'dog_walker', 'client']
       }
     ].filter(item => this.isRoleAllowed(item));
   }

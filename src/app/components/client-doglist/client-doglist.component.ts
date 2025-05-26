@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DogService } from '../../services/dogs/dog.service';  // Servicio para obtener los perros
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-client-doglist',
   templateUrl: './client-doglist.component.html',
   styleUrls: ['./client-doglist.component.scss'],
   standalone: true,
-   imports: [
+  imports: [
 
     ReactiveFormsModule,
     CommonModule,
@@ -20,9 +21,10 @@ export class ClientDogListComponent implements OnInit {
   filtersForm!: FormGroup;  // Definimos el formulario reactivo
   currentPage: number = 1;
   totalPages: number = 1;
-loading: any;
+  loading: any;
+  storageUrl = environment.storageUrl; // URL base de la API
 
-  constructor(private fb: FormBuilder, private dogService: DogService) {}
+  constructor(private fb: FormBuilder, private dogService: DogService) { }
 
   ngOnInit(): void {
     // Inicializamos el formulario reactivo

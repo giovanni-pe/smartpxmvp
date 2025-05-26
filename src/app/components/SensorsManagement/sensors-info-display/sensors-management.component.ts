@@ -30,7 +30,7 @@ interface Greenhouse {
   standalone: true,
   imports: [
     CommonModule,
-    TableModule,  
+    TableModule,
     SensorDeleteButtonComponent,
     SensorEditButtonComponent,
     SensorViewButtonComponent,
@@ -40,13 +40,13 @@ interface Greenhouse {
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header>
-        <strong>SmartMusa</strong> <small>team</small>
+        <strong>SmartPX</strong> <small>team</small>
       </c-card-header>
       <c-card-body>
       <div class="container-fluid">
       <div class="row mb-3">
         <div class="col">
-         
+
           <div style="display: flex; justify-content: center; align-items: center; height: 100px; margin-bottom: 20px;">
                             <h2 style="background-color: #042c57; color: white; padding: 10px 20px; border-radius: 8px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                             Gestión de Sensores
@@ -85,7 +85,7 @@ interface Greenhouse {
                 <tr *ngFor="let sensor of sensors$ | async">
                   <td>{{ sensor.id }}</td>
                   <td>{{ sensor.type }}</td>
-                  
+
                   <!-- Badge gráfico para el estado del sensor (1: Activo, 0: Inactivo) -->
                   <td>
                     <span *ngIf="sensor.status === 1" class="badge bg-success">
@@ -133,7 +133,7 @@ interface Greenhouse {
       </c-card-body>
     </c-card>
   </c-col>
-    
+
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

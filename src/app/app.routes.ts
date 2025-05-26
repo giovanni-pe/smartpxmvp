@@ -1,3 +1,4 @@
+import { RoleRedirectComponent } from './SessionManagement/role-redirect/role-redirect.component';
 import { Routes } from '@angular/router';
 import { DefaultLayoutComponent } from './layout';
 import { AuthGuard } from './SessionManagement/auth.guard';
@@ -8,9 +9,10 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'walkers',
-    pathMatch: 'full',
+    component: RoleRedirectComponent
+
   },
+
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   {
@@ -27,20 +29,28 @@ export const routes: Routes = [
         loadChildren: () => import('./components/Dashboard/dashboard/routes').then((m) => m.routes)
       },
       {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
+        path: 'walker-reservations',
+        loadChildren: () => import('./components/walker-reservations/routes').then((m) => m.routes),
+        data: { roles: ['dog_walker'] },
       },
-
+      {
+        path: 'client-reservations',
+        loadChildren: () => import('./components/client-reservations/routes').then((m) => m.routes)
+      },
       {
         path: 'walkers',
         loadChildren: () => import('./components/walker-list/routes').then(m => m.routes),
       },
-       {
+      {
+        path: 'walker-dashboard',
+        loadChildren: () => import('./components/walker-dashboard/routes').then(m => m.routes),
+      },
+      {
         path: 'register-dogs',
         loadChildren: () => import('./components/register-dog/routes').then(m => m.routes),
       },
 
-   {
+      {
         path: 'list-dogs',
         loadChildren: () => import('./components/client-doglist/routes').then(m => m.routes),
       },
@@ -116,10 +126,7 @@ export const routes: Routes = [
       title: 'Page 404'
     }
   },
-  {
-    path: 'welcome',
-    loadChildren: () => import('./components/FrontOffice/welcome/routes').then((m) => m.routes)
-  },
+
   {
     path: '500',
     loadComponent: () => import('./views/pages/page500/page500.component').then(m => m.Page500Component),
@@ -141,5 +148,6 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
-  { path: '**', redirectTo: 'walkers' }
+  { path: '**',  component: RoleRedirectComponent
+}
 ];

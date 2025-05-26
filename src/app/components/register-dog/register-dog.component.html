@@ -1,40 +1,150 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="dogForm">
-  <div class="form-group">
-    <label for="name">Nombre del Perro</label>
-    <input type="text" id="name" formControlName="name" class="form-control" required />
+<div class="luxury-dog-form">
+  <!-- Partículas flotantes decorativas (opcional) -->
+  <div class="floating-particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
   </div>
 
-  <div class="form-group">
-    <label for="breed">Raza</label>
-    <input type="text" id="breed" formControlName="breed" class="form-control" required />
+  <div class="form-content">
+    <!-- Título del formulario -->
+    <div class="form-title">
+      <h2>Registro de Mascota</h2>
+      <p class="subtitle">Comparte los detalles de tu compañero de cuatro patas</p>
+      <div class="title-divider"></div>
+    </div>
+
+    <!-- Formulario -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="dogForm">
+
+      <!-- Fila para nombre y raza -->
+      <div class="form-row">
+        <div class="luxury-form-group">
+          <label for="name">Nombre del Perro</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="luxury-input"
+            placeholder="Ej: Max, Luna, Rocky..."
+            required
+          />
+          <span class="validation-icon"
+                [class.valid]="dogForm.get('name')?.valid && dogForm.get('name')?.touched"
+                [class.invalid]="dogForm.get('name')?.invalid && dogForm.get('name')?.touched">
+            <span *ngIf="dogForm.get('name')?.valid && dogForm.get('name')?.touched">✓</span>
+            <span *ngIf="dogForm.get('name')?.invalid && dogForm.get('name')?.touched">✗</span>
+          </span>
+        </div>
+
+        <div class="luxury-form-group">
+          <label for="breed">Raza</label>
+          <input
+            type="text"
+            id="breed"
+            formControlName="breed"
+            class="luxury-input"
+            placeholder="Ej: Labrador, Bulldog, Mestizo..."
+            required
+          />
+          <span class="validation-icon"
+                [class.valid]="dogForm.get('breed')?.valid && dogForm.get('breed')?.touched"
+                [class.invalid]="dogForm.get('breed')?.invalid && dogForm.get('breed')?.touched">
+            <span *ngIf="dogForm.get('breed')?.valid && dogForm.get('breed')?.touched">✓</span>
+            <span *ngIf="dogForm.get('breed')?.invalid && dogForm.get('breed')?.touched">✗</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Fila para edad y tamaño -->
+      <div class="form-row">
+        <div class="luxury-form-group">
+          <label for="age">Edad</label>
+          <input
+            type="text"
+            id="age"
+            formControlName="age"
+            class="luxury-input"
+            placeholder="Ej: 2 años, 6 meses..."
+            required
+          />
+          <span class="validation-icon"
+                [class.valid]="dogForm.get('age')?.valid && dogForm.get('age')?.touched"
+                [class.invalid]="dogForm.get('age')?.invalid && dogForm.get('age')?.touched">
+            <span *ngIf="dogForm.get('age')?.valid && dogForm.get('age')?.touched">✓</span>
+            <span *ngIf="dogForm.get('age')?.invalid && dogForm.get('age')?.touched">✗</span>
+          </span>
+        </div>
+
+        <div class="luxury-form-group">
+          <label for="size">Tamaño</label>
+          <input
+            type="text"
+            id="size"
+            formControlName="size"
+            class="luxury-input"
+            placeholder="Ej: Pequeño, Mediano, Grande..."
+          />
+        </div>
+      </div>
+
+      <!-- Nivel de energía -->
+      <div class="luxury-form-group">
+        <label for="energy_level">Nivel de Energía</label>
+        <div class="luxury-select">
+          <select id="energy_level" formControlName="energy_level" class="luxury-input" required>
+            <option value="" disabled>Selecciona el nivel de energía</option>
+            <option value="low">🐌 Bajo - Prefiere descansar y caminar tranquilo</option>
+            <option value="medium">🚶 Medio - Le gusta jugar y hacer ejercicio moderado</option>
+            <option value="high">🏃 Alto - Muy activo, necesita mucho ejercicio</option>
+          </select>
+        </div>
+        <span class="validation-icon"
+              [class.valid]="dogForm.get('energy_level')?.valid && dogForm.get('energy_level')?.touched"
+              [class.invalid]="dogForm.get('energy_level')?.invalid && dogForm.get('energy_level')?.touched">
+          <span *ngIf="dogForm.get('energy_level')?.valid && dogForm.get('energy_level')?.touched">✓</span>
+          <span *ngIf="dogForm.get('energy_level')?.invalid && dogForm.get('energy_level')?.touched">✗</span>
+        </span>
+      </div>
+
+      <!-- Foto del perro -->
+      <div class="luxury-form-group">
+        <label for="photo">Foto del Perro</label>
+        <div class="luxury-file-input" [class.has-file]="selectedFileName">
+          <input
+            type="file"
+            id="photo"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+          />
+          <label for="photo" class="file-label">
+            <span class="file-icon">📸</span>
+            <span>{{ selectedFileName || 'Seleccionar foto de tu mascota' }}</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Botón de envío -->
+      <button
+        type="submit"
+        class="luxury-submit-btn"
+        [class.loading]="isSubmitting"
+        [disabled]="dogForm.invalid || isSubmitting">
+        <span *ngIf="!isSubmitting">Registrar Mascota</span>
+        <span *ngIf="isSubmitting">Procesando...</span>
+      </button>
+
+      <!-- Mensajes de éxito y error -->
+      <div *ngIf="successMessage" class="luxury-alert success">
+        <span class="alert-icon"></span>
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="luxury-alert error">
+        <span class="alert-icon"></span>
+        {{ errorMessage }}
+      </div>
+    </form>
   </div>
-
-  <div class="form-group">
-    <label for="age">Edad</label>
-    <input type="text" id="age" formControlName="age" class="form-control" required />
-  </div>
-
-  <div class="form-group">
-    <label for="size">Tamaño</label>
-    <input type="text" id="size" formControlName="size" class="form-control" />
-  </div>
-
-  <div class="form-group">
-    <label for="energy_level">Nivel de Energía</label>
-    <select id="energy_level" formControlName="energy_level" class="form-control" required>
-      <option value="low">Bajo</option>
-      <option value="medium">Medio</option>
-      <option value="high">Alto</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="photo">Foto del Perro</label>
-    <input type="file" id="photo" (change)="onFileSelected($event)" accept="image/*" class="form-control" />
-  </div>
-
-  <button type="submit" class="btn btn-primary" [disabled]="dogForm.invalid">Registrar Perro</button>
-
-  <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
-  <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
-</form>
+</div>

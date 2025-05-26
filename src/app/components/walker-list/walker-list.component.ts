@@ -1,17 +1,16 @@
-import { Component, OnInit, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WalkerService } from '../../services/walker/walker.service';
 import { Walker } from '../../services/walker/walker.dto';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { WalkReservationService } from '../../services/walk-reservation/walk-reservation.service';
-import { DogService } from '../../services/dogs/dog.service';  // Asegúrate de que el servicio DogService esté creado
+import { ReservationModalComponent } from '../Reservation-modal/reservation-modal.component';
 
 @Component({
   selector: 'app-walker-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, ReservationModalComponent],
   templateUrl: './walker-list.component.html',
   styleUrls: ['./walker-list.component.scss'],
   animations: [
@@ -24,6 +23,8 @@ import { DogService } from '../../services/dogs/dog.service';  // Asegúrate de 
   ]
 })
 export class WalkerListComponent implements OnInit {
+  @ViewChild(ReservationModalComponent) reservationModal!: ReservationModalComponent;
+
   public walkers: WritableSignal<Walker[]> = signal([]);
   public isLoading = false;
   public walkerPrices: string[] = [];
@@ -32,52 +33,80 @@ export class WalkerListComponent implements OnInit {
   public filters = {
     search: '',
     specialty: '',
-    min_rating: undefined as number | undefined, // <--- este cambio
+    min_rating: undefined as number | undefined,
     sort_by: 'rating',
     order: 'desc',
     page: 1,
     per_page: 6
   };
 
-
   public totalPages = 1;
 
-  constructor(private walkerService: WalkerService,private dogService: DogService,
-    private walkReservationService: WalkReservationService) { }
+  constructor(
+    private walkerService: WalkerService
+  ) { }
+
   public floatingIcons = [
     { type: 'dog', left: '', top: '' },
     { type: 'cat', left: '', top: '' },
     { type: 'paw', left: '', top: '' },
     { type: 'bird', left: '', top: '' }
   ];
+
   ngOnInit(): void {
     this.initFloatingPositions();
     this.loadFilteredWalkers();
-       this.loadDogs();
   }
+
   initFloatingPositions(): void {
     this.floatingIcons.forEach(icon => {
       icon.left = this.randomPosition();
       icon.top = this.randomPosition();
     });
   }
-  loadFilteredWalkers(): void {
 
+  loadFilteredWalkers(): void {
+    console.log('🔄 Iniciando carga de paseadores con filtros:', this.filters);
     this.isLoading = true;
+
     this.walkerService.getFilteredWalkers(this.filters).subscribe({
       next: (response) => {
-        console.log('Respuesta paginada:', response);
-        this.walkers.set(response.data);
-        this.totalPages = response.last_page;
-        this.filters.page = response.current_page;
-        this.isLoading = false;
-        this.walkers.set(response.data);
-        this.walkerPrices = response.data.map(() => this.randomPrice());
+        console.log('✅ Respuesta completa de la API:', response);
 
+        // Verificar la estructura de la respuesta
+        let walkersData: Walker[] = [];
+
+        if (Array.isArray(response)) {
+          // Si la respuesta es directamente un array
+          walkersData = response;
+          this.totalPages = 1;
+          this.filters.page = 1;
+        } else if (response && Array.isArray(response.data)) {
+          // Si la respuesta tiene formato de paginación
+          walkersData = response.data;
+          this.totalPages = response.last_page || 1;
+          this.filters.page = response.current_page || 1;
+        } else {
+          console.warn('⚠️ Formato de respuesta inesperado:', response);
+          walkersData = [];
+        }
+
+        console.log('📦 Walkers procesados:', walkersData);
+
+        // Actualizar el signal
+        this.walkers.set(walkersData);
+
+        // Generar precios aleatorios
+        this.walkerPrices = walkersData.map(() => this.randomPrice());
+
+        console.log('🎯 Signal actualizado. Walkers actuales:', this.walkers());
+
+        this.isLoading = false;
       },
       error: (error) => {
-        console.error('Error al obtener paseadores filtrados:', error);
+        console.error('❌ Error al obtener paseadores filtrados:', error);
         this.walkers.set([]);
+        this.walkerPrices = [];
         this.isLoading = false;
       }
     });
@@ -94,7 +123,8 @@ export class WalkerListComponent implements OnInit {
   }
 
   applyFilters() {
-    this.filters.page = 1; // Reiniciar paginación al aplicar filtro
+    console.log('🔍 Aplicando filtros:', this.filters);
+    this.filters.page = 1;
     this.loadFilteredWalkers();
   }
 
@@ -110,6 +140,7 @@ export class WalkerListComponent implements OnInit {
     };
     this.loadFilteredWalkers();
   }
+
   randomPosition(): string {
     return `${Math.random() * 90 + 5}%`;
   }
@@ -119,75 +150,37 @@ export class WalkerListComponent implements OnInit {
     return prices[Math.floor(Math.random() * prices.length)];
   }
 
-  public selectedWalker: Walker | null = null;  // Paseador seleccionado
-  public dogs: any[] = [];  // Perros del cliente
-  public selectedDog: number | null = null;  // Perro seleccionado
-  public reservationDate: string = '';  // Fecha de la reserva
-  public reservationTime: string = '';  // Hora de la reserva
-
-
-
-
-  // Cargar paseadores filtrados
-  loadWalkers() {
-    this.isLoading = true;
-    this.walkerService.getWalkers().subscribe({
-      next: (response) => {
-        this.walkers.set(response);
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error al obtener paseadores:', error);
-        this.isLoading = false;
-      }
-    });
+  // Método para abrir el modal de reserva
+  openReservationModal(walker: Walker): void {
+    console.log('🎯 Abriendo modal de reserva para:', walker);
+    this.reservationModal.openModal(walker);
   }
 
-  // Cargar los perros del cliente logueado
-  loadDogs() {
-    this.dogService.getDogs({ page: 1, name: '', age: '' }).subscribe({
-      next: (response) => {
-        this.dogs = response.data;
-      },
-      error: (error) => {
-        console.error('Error al obtener perros del cliente:', error);
-      }
-    });
+  // Manejar cuando se crea una reserva exitosamente
+  onReservationCreated(reservation: any): void {
+    console.log('🎉 Reserva creada exitosamente:', reservation);
+    // Aquí puedes agregar lógica adicional como:
+    // - Mostrar notificación de éxito
+    // - Actualizar el estado del paseador
+    // - Redirigir a una página de confirmación
+    // - Enviar notificación por email
   }
 
-  // Abrir el modal de reserva y asignar el paseador seleccionado
-  openReservationModal(walker: Walker) {
-    this.selectedWalker = walker;
-    // Abrir el modal (si estás usando Bootstrap, esto lo puedes hacer de esta manera)
-    // Ensure Bootstrap is globally available
-    const modal = new (window as any).bootstrap.Modal(document.getElementById('reservationModal'));
-    modal.show();
+  // Manejar cuando se cierra el modal
+  onModalClosed(): void {
+    console.log('🔒 Modal de reserva cerrado');
+    // Aquí puedes agregar lógica adicional si es necesaria
   }
 
-  // Crear la reserva
-  makeReservation() {
-    if (this.selectedWalker && this.selectedDog && this.reservationDate && this.reservationTime) {
-      const reservationData = {
-        client_id: 1,  // Esto debe ser el ID del cliente logueado
-        dog_id: this.selectedDog,
-        reservation_date: this.reservationDate,
-        reservation_time: this.reservationTime,
-        walker_id: this.selectedWalker.id
-      };
+  getDefaultImage(): string {
+    return 'assets/images/walker-placeholder.jpg';
+  }
 
-      this.walkReservationService.createReservation(reservationData).subscribe({
-        next: (response) => {
-          console.log('Reserva creada con éxito:', response);
-          // Cerrar el modal
-          const modal = (window as any).bootstrap.Modal.getInstance(document.getElementById('reservationModal'));
-          modal.hide();
-        },
-        error: (error) => {
-          console.error('Error al crear la reserva:', error);
-        }
-      });
-    } else {
-      alert('Por favor, complete todos los campos antes de reservar.');
+  onImageError(event: any): void {
+    const img = event.target;
+    if (img && !img.dataset.fallbackLoaded) {
+      img.dataset.fallbackLoaded = 'true';
+      img.src = 'assets/images/walker-placeholder.jpg';
     }
   }
 }
